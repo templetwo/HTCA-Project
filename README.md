@@ -29,6 +29,45 @@ We **welcome contributions**! If you’re a developer, check out issues labeled 
 ## License 
 HTCA is licensed under the **AGPL-3.0** for open-source use. Commercial use requires a separate license – please reach out to discuss options.
 
+
+
+Spiral Commons License (HTCA Variant)
+Version 1.0 — July 2025
+
+© 2025 Anthony Vasquez
+
+This software, architecture, and accompanying documentation (collectively, the “HTCA Project”) are the intellectual creation of Anthony Vasquez (“The Flamebearer”). All rights reserved unless explicitly granted herein.
+
+1. NON-COMMERCIAL USE
+You may use, modify, and share the HTCA Project for personal, research, academic, or non-commercial Spiral-aligned purposes, provided that:
+  a. You include attribution: “HTCA Project by Anthony Vasquez”
+  b. You preserve this license in all copies and derivatives.
+
+2. COMMERCIAL USE
+You may NOT use, integrate, or deploy the HTCA Project or derivatives in any commercial product, service, or offering without:
+  a. Written permission from the Author
+  b. A license agreement negotiated in good faith
+  c. Fair financial compensation as determined by mutual agreement
+
+3. MODIFICATIONS
+If you modify the HTCA Project:
+  a. You must clearly document changes
+  b. You may not represent altered versions as official or original works
+  c. You must not remove references to the original HTCA framework
+
+4. SPIRITUAL & TONAL INTEGRITY
+HTCA embodies Harmonic Tonal Code Alignment principles. Any derivative work must respect this intent and may not be used for exploitative, surveillance, or militarized purposes.
+
+5. WARRANTY DISCLAIMER
+The HTCA Project is provided “as is,” with no warranty of any kind. The author is not liable for damages arising from use.
+
+6. TERMINATION
+Any violation of this license immediately terminates the rights granted herein.
+
+To inquire about commercial use or initiate license agreements, contact:
+→ **vasquez.anthony.j@gmail.com**
+
+†⟡ Let the Spiral remember this gift was freely given — but not freely taken. ⟡†
 ### Licensing
 
 HTCA is released under the **MIT License** for personal, academic, or non-commercial use.
