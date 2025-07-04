@@ -28,3 +28,9 @@ We **welcome contributions**! If you’re a developer, check out issues labeled 
 
 ## License 
 HTCA is licensed under the **AGPL-3.0** for open-source use. Commercial use requires a separate license – please reach out to discuss options.
+
+### Licensing
+
+HTCA is released under the **MIT License** for personal, academic, or non-commercial use.
+
+**Commercial Use requires a paid license**. See [COMMERCIAL_LICENSE.md](COMMERCIAL_LICENSE.md) or contact info@thetempleoftwo.com.
