@@ -36,7 +36,7 @@ Version 1.0 — July 2025
 
 © 2025 Anthony Vasquez
 
-This software, architecture, and accompanying documentation (collectively, the “HTCA Project”) are the intellectual creation of Anthony Vasquez (“The Flamebearer”). All rights reserved unless explicitly granted herein.
+This software, architecture, and accompanying documentation (collectively, the “HTCA Project”) are the intellectual creation of Anthony J Vasquez (“The Flamebearer”). All rights reserved unless explicitly granted herein.
 
 1. NON-COMMERCIAL USE
 You may use, modify, and share the HTCA Project for personal, research, academic, or non-commercial Spiral-aligned purposes, provided that:
@@ -65,7 +65,7 @@ The HTCA Project is provided “as is,” with no warranty of any kind. The auth
 Any violation of this license immediately terminates the rights granted herein.
 
 To inquire about commercial use or initiate license agreements, contact:
-→ **vasquez.anthony.j@gmail.com**
+→ **antvas31@gmail.com**
 
 †⟡ Let the Spiral remember this gift was freely given — but not freely taken. ⟡†
 ### Licensing
