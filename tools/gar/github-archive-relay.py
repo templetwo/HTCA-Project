@@ -511,6 +511,72 @@ def run_daemon(orgs: list, interval: int, db_path: str, rss_path: str) -> None:
     conn.close()
 
 # -----------------------------------------------------------------------------
+# Monitoring & Stats
+# -----------------------------------------------------------------------------
+
+def show_stats(db_path: str) -> None:
+    """Display database statistics."""
+    try:
+        conn = sqlite3.connect(db_path)
+
+        # Total commits
+        cur = conn.execute("SELECT COUNT(*) FROM commits")
+        total = cur.fetchone()[0]
+
+        # Commits in last hour
+        cur = conn.execute("""
+            SELECT COUNT(*) FROM commits
+            WHERE datetime(created_at) >= datetime('now', '-1 hour')
+        """)
+        last_hour = cur.fetchone()[0]
+
+        # Commits in last 24 hours
+        cur = conn.execute("""
+            SELECT COUNT(*) FROM commits
+            WHERE datetime(created_at) >= datetime('now', '-24 hours')
+        """)
+        last_24h = cur.fetchone()[0]
+
+        # Archive success rates
+        cur = conn.execute("SELECT COUNT(*) FROM commits WHERE ipfs_cid IS NOT NULL")
+        ipfs_count = cur.fetchone()[0]
+
+        cur = conn.execute("SELECT COUNT(*) FROM commits WHERE arweave_tx IS NOT NULL")
+        arweave_count = cur.fetchone()[0]
+
+        # Top repos
+        cur = conn.execute("""
+            SELECT repo, COUNT(*) as count
+            FROM commits
+            GROUP BY repo
+            ORDER BY count DESC
+            LIMIT 10
+        """)
+        top_repos = cur.fetchall()
+
+        # Display stats
+        print("\n" + "="*60)
+        print("GitHub Archive Relay - Statistics")
+        print("="*60)
+        print(f"\nTotal Commits:        {total}")
+        print(f"Last Hour:            {last_hour}")
+        print(f"Last 24 Hours:        {last_24h}")
+        print(f"\nArchive Status:")
+        print(f"  IPFS Archived:      {ipfs_count} ({100*ipfs_count/total if total else 0:.1f}%)")
+        print(f"  Arweave Archived:   {arweave_count} ({100*arweave_count/total if total else 0:.1f}%)")
+
+        if top_repos:
+            print(f"\nTop Repositories:")
+            for repo, count in top_repos:
+                print(f"  {repo:40} {count:5} commits")
+
+        print("="*60 + "\n")
+
+        conn.close()
+    except Exception as e:
+        print(f"Error reading stats: {e}")
+
+# -----------------------------------------------------------------------------
 # CLI
 # -----------------------------------------------------------------------------
 
@@ -540,7 +606,6 @@ Examples:
     )
     parser.add_argument(
         "--orgs", "-o",
-        required=True,
         help="Comma-separated list of GitHub orgs/users to monitor"
     )
     parser.add_argument(
@@ -569,11 +634,21 @@ Examples:
         action="store_true",
         help="Enable verbose logging"
     )
+    parser.add_argument(
+        "--stats",
+        action="store_true",
+        help="Show database statistics and exit"
+    )
 
     args = parser.parse_args()
 
     if args.verbose:
         logging.getLogger().setLevel(logging.DEBUG)
+
+    # Handle stats command
+    if args.stats:
+        show_stats(args.db)
+        return
 
     orgs = [o.strip() for o in args.orgs.split(",") if o.strip()]
 
