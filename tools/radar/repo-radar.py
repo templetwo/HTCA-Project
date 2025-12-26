@@ -787,15 +787,17 @@ Examples:
                     conn.close()
                     return
 
-                # Get top repos
+                # Get top repos with full identity metadata
                 cursor = conn.execute("""
                     SELECT
                         full_name,
+                        owner,
                         velocity_score,
                         commits_7d,
                         contributors_7d,
                         stars,
                         created_at,
+                        pushed_at,
                         ipfs_cid
                     FROM repos
                     ORDER BY velocity_score DESC
@@ -814,14 +816,22 @@ Examples:
                 print("="*80 + "\n")
 
                 for i, row in enumerate(repos, 1):
-                    print(f"{i}. {row[0]}")
-                    print(f"   Velocity: {row[1]}")
-                    print(f"   Commits (7d): {row[2]}")
-                    print(f"   Contributors: {row[3]}")
-                    print(f"   Stars: {row[4]}")
-                    print(f"   Created: {row[5]}")
-                    print(f"   IPFS CID: {row[6]}")
-                    print(f"   GitHub: https://github.com/{row[0]}")
+                    full_name, owner, velocity, commits, contributors, stars, created_at, pushed_at, cid = row
+
+                    print(f"{i}. {full_name}")
+                    print(f"   Owner: {owner} (User/Org - verify at github.com/{owner})")
+                    print(f"   Velocity: {velocity}")
+                    print(f"   Commits (7d): {commits} | Contributors: {contributors} | Stars: {stars}")
+                    print(f"   Created: {created_at}")
+                    print(f"   Last Push: {pushed_at}")
+                    print(f"   IPFS CID: {cid}")
+                    print(f"   GitHub: https://github.com/{full_name}")
+
+                    # Name collision warning for common names
+                    common_names = ['lynx', 'atlas', 'phoenix', 'core', 'framework', 'engine']
+                    repo_name = full_name.split('/')[-1].lower()
+                    if repo_name in common_names:
+                        print(f"   ⚠️  NOTE: '{repo_name}' is a common name - verify specific owner identity")
                     print()
 
                 # Spam detection check
@@ -866,12 +876,16 @@ Examples:
                     size = feed.stat().st_size
                     print(f"✓ {feed.name} ({size:,} bytes)")
 
-                    # Basic XML validation
-                    content = feed.read_text()
-                    if '<' not in content or '>' not in content:
-                        log.error(f"  ✗ Invalid XML structure")
-                    else:
-                        log.info(f"  ✓ Valid XML structure")
+                    # Proper XML validation via parsing
+                    import xml.etree.ElementTree as ET
+                    try:
+                        tree = ET.parse(feed)
+                        root = tree.getroot()
+                        # Count items/entries
+                        items = root.findall('.//item') if 'rss' in feed.name else root.findall('.//{http://www.w3.org/2005/Atom}entry')
+                        log.info(f"  ✓ Valid XML (parsed successfully, {len(items)} entries)")
+                    except ET.ParseError as pe:
+                        log.error(f"  ✗ Invalid XML structure: {pe}")
 
                 except Exception as e:
                     log.error(f"✗ {feed.name}: {e}")

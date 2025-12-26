@@ -334,14 +334,27 @@ def test_velocity_metric_fetching():
 # =============================================================================
 
 def test_velocity_calculation_performance():
-    """Test velocity calculation performance."""
+    """Test velocity calculation performance with reproducible methodology."""
     try:
         import time
+        import platform
+        import os
 
-        # Calculate 10000 velocity scores
-        start = time.time()
-        for i in range(10000):
-            score = radar.calculate_velocity_score(
+        # Print machine specs for reproducibility
+        print(f"\n   Machine Specs:")
+        print(f"   - Platform: {platform.system()} {platform.release()}")
+        print(f"   - Processor: {platform.processor()}")
+        print(f"   - Python: {platform.python_version()}")
+        print(f"   - CPU Count: {os.cpu_count()}")
+
+        # Benchmark parameters
+        dataset_size = 10000
+        warmup_iterations = 100
+
+        # Warmup run (not measured)
+        print(f"   Warmup: {warmup_iterations} iterations...")
+        for i in range(warmup_iterations):
+            _ = radar.calculate_velocity_score(
                 commits_7d=i % 100,
                 forks_7d=i % 10,
                 contributors=i % 20,
@@ -349,12 +362,35 @@ def test_velocity_calculation_performance():
                 prs_7d=i % 25,
                 watchers=i % 50
             )
-        elapsed = time.time() - start
 
-        calcs_per_second = 10000 / elapsed
-        print(f"   Calculated {calcs_per_second:.0f} scores/second")
+        # Measured run
+        print(f"   Measuring: {dataset_size} iterations...")
+        times = []
+        for i in range(dataset_size):
+            start = time.perf_counter()
+            _ = radar.calculate_velocity_score(
+                commits_7d=i % 100,
+                forks_7d=i % 10,
+                contributors=i % 20,
+                issues_7d=i % 30,
+                prs_7d=i % 25,
+                watchers=i % 50
+            )
+            times.append(time.perf_counter() - start)
 
-        assert calcs_per_second > 1000, "Should calculate at least 1000 scores/second"
+        # Calculate statistics
+        times.sort()
+        median = times[len(times) // 2]
+        p95 = times[int(len(times) * 0.95)]
+        total_time = sum(times)
+        throughput = dataset_size / total_time
+
+        print(f"   Results (n={dataset_size}):")
+        print(f"   - Throughput: {throughput:,.0f} calcs/sec")
+        print(f"   - Median latency: {median * 1_000_000:.2f} μs")
+        print(f"   - P95 latency: {p95 * 1_000_000:.2f} μs")
+
+        assert throughput > 1000, "Should calculate at least 1000 scores/second"
         results.pass_test("Velocity calculation performance")
     except Exception as e:
         results.fail_test("Velocity calculation performance", str(e))
