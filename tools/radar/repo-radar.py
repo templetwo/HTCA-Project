@@ -790,7 +790,8 @@ Examples:
                     log.info("Run a scan first: python repo-radar.py --watch ai --once")
                     return
 
-                conn = sqlite3.connect(args.db)
+                # Use init_db to ensure schema migrations run
+                conn = init_db(args.db)
 
                 # Check table exists
                 cursor = conn.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='repos'")
