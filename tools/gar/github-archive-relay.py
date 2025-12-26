@@ -93,6 +93,110 @@ def compute_ipfs_cid_v1(content: bytes) -> str:
     return 'b' + cid_b32
 
 # -----------------------------------------------------------------------------
+# Security & Secret Detection
+# -----------------------------------------------------------------------------
+
+import re
+
+# Secret detection patterns
+SECRET_PATTERNS = [
+    # AWS Keys
+    (r'AKIA[0-9A-Z]{16}', 'AWS Access Key'),
+    (r'aws_secret_access_key\s*=\s*["\']?[\w+/=]{40}["\']?', 'AWS Secret Key'),
+
+    # GitHub Tokens
+    (r'ghp_[a-zA-Z0-9]{36}', 'GitHub Personal Access Token'),
+    (r'gho_[a-zA-Z0-9]{36}', 'GitHub OAuth Token'),
+    (r'ghs_[a-zA-Z0-9]{36}', 'GitHub App Token'),
+
+    # Generic API Keys
+    (r'api[_-]?key\s*[:=]\s*["\']?[a-zA-Z0-9_\-]{20,}["\']?', 'API Key'),
+    (r'secret[_-]?key\s*[:=]\s*["\']?[a-zA-Z0-9_\-]{20,}["\']?', 'Secret Key'),
+    (r'access[_-]?token\s*[:=]\s*["\']?[a-zA-Z0-9_\-\.]{20,}["\']?', 'Access Token'),
+
+    # Private Keys
+    (r'-----BEGIN (RSA |DSA |EC )?PRIVATE KEY-----', 'Private Key'),
+    (r'-----BEGIN OPENSSH PRIVATE KEY-----', 'SSH Private Key'),
+
+    # Database Credentials
+    (r'postgres://[^:]+:[^@]+@', 'PostgreSQL Connection String'),
+    (r'mysql://[^:]+:[^@]+@', 'MySQL Connection String'),
+    (r'mongodb(\+srv)?://[^:]+:[^@]+@', 'MongoDB Connection String'),
+
+    # Cloud Provider Tokens
+    (r'sk-[a-zA-Z0-9]{48}', 'OpenAI API Key'),
+    (r'AIza[0-9A-Za-z_-]{35}', 'Google Cloud API Key'),
+    (r'sk_live_[0-9a-zA-Z]{24,}', 'Stripe Live Key'),
+
+    # Generic High-Entropy Strings (potential secrets)
+    (r'["\'][a-zA-Z0-9_\-]{50,}["\']', 'High-Entropy String'),
+]
+
+# Sensitive file patterns
+SENSITIVE_FILES = [
+    '.env',
+    '.env.local',
+    '.env.production',
+    'credentials.json',
+    'secrets.yaml',
+    'config/secrets',
+    'id_rsa',
+    'id_dsa',
+    '.pem',
+    '.key',
+    'keyfile',
+    'service-account.json',
+]
+
+def contains_secrets(text: str) -> tuple[bool, list]:
+    """
+    Scan text for potential secrets.
+
+    Returns:
+        (has_secrets: bool, findings: list of (pattern_name, match))
+    """
+    findings = []
+
+    for pattern, name in SECRET_PATTERNS:
+        matches = re.finditer(pattern, text, re.IGNORECASE)
+        for match in matches:
+            findings.append((name, match.group(0)[:50]))  # Truncate for logging
+
+    return len(findings) > 0, findings
+
+def is_sensitive_file(file_path: str) -> bool:
+    """Check if a file path indicates sensitive content."""
+    file_path_lower = file_path.lower()
+    return any(pattern in file_path_lower for pattern in SENSITIVE_FILES)
+
+def should_archive_commit(commit_data: dict, check_secrets: bool = True) -> tuple[bool, str]:
+    """
+    Determine if a commit should be archived based on security checks.
+
+    Args:
+        commit_data: Commit metadata dictionary
+        check_secrets: Whether to perform secret detection (default: True)
+
+    Returns:
+        (should_archive: bool, reason: str)
+    """
+    if not check_secrets:
+        return True, "Secret checking disabled"
+
+    # Check commit message for secrets
+    message = commit_data.get("message", "")
+    has_secrets, findings = contains_secrets(message)
+
+    if has_secrets:
+        reasons = "; ".join([f"{name}" for name, _ in findings])
+        return False, f"Secrets detected in message: {reasons}"
+
+    # Additional metadata checks could go here
+    # (e.g., checking file lists if we fetch commit details)
+
+    return True, "Safe to archive"
+
+# -----------------------------------------------------------------------------
 # Database Layer (SQLite - zero config)
 # -----------------------------------------------------------------------------
 
@@ -427,7 +531,7 @@ def generate_rss(conn: sqlite3.Connection, output_path: str, orgs: list) -> None
 # Main Loop
 # -----------------------------------------------------------------------------
 
-def poll_once(conn: sqlite3.Connection, orgs: list, rss_path: str) -> int:
+def poll_once(conn: sqlite3.Connection, orgs: list, rss_path: str, check_secrets: bool = True) -> int:
     """Run one polling cycle. Returns number of new commits found."""
     new_commits = 0
 
@@ -462,6 +566,13 @@ def poll_once(conn: sqlite3.Connection, orgs: list, rss_path: str) -> int:
                     "tree_sha": commit_info.get("tree", {}).get("sha", "")
                 }
 
+                # Security check: scan for secrets before archiving
+                should_archive, reason = should_archive_commit(commit_data, check_secrets=check_secrets)
+
+                if not should_archive:
+                    log.warning(f"  Skipping commit {sha[:8]} from {repo_name}: {reason}")
+                    continue
+
                 # Archive to IPFS
                 commit_data["ipfs_cid"] = pin_to_ipfs(commit_data)
 
@@ -480,7 +591,7 @@ def poll_once(conn: sqlite3.Connection, orgs: list, rss_path: str) -> int:
 
     return new_commits
 
-def run_daemon(orgs: list, interval: int, db_path: str, rss_path: str) -> None:
+def run_daemon(orgs: list, interval: int, db_path: str, rss_path: str, check_secrets: bool = True) -> None:
     """Run continuous polling daemon."""
     conn = init_db(db_path)
     log.info(f"Starting GitHub Archive Relay")
@@ -491,6 +602,7 @@ def run_daemon(orgs: list, interval: int, db_path: str, rss_path: str) -> None:
     log.info(f"  GitHub Token: {'configured' if os.environ.get('GITHUB_TOKEN') else 'not set (60 req/hr limit)'}")
     log.info(f"  IPFS: {'configured' if os.environ.get('IPFS_API') or os.environ.get('PINATA_API_KEY') else 'local CID generation'}")
     log.info(f"  Arweave: {'configured' if os.environ.get('BUNDLR_API_KEY') else 'not configured'}")
+    log.info(f"  Secret Detection: {'disabled' if not check_secrets else 'enabled'}")
     log.info("-" * 60)
 
     # Initial poll
@@ -498,7 +610,7 @@ def run_daemon(orgs: list, interval: int, db_path: str, rss_path: str) -> None:
 
     while True:
         try:
-            new = poll_once(conn, orgs, rss_path)
+            new = poll_once(conn, orgs, rss_path, check_secrets=check_secrets)
             log.info(f"Poll complete: {new} new commits")
         except KeyboardInterrupt:
             log.info("Shutting down...")
@@ -639,6 +751,11 @@ Examples:
         action="store_true",
         help="Show database statistics and exit"
     )
+    parser.add_argument(
+        "--no-secret-check",
+        action="store_true",
+        help="Disable secret detection (archives all commits including those with potential secrets)"
+    )
 
     args = parser.parse_args()
 
@@ -655,12 +772,14 @@ Examples:
     if not orgs:
         parser.error("At least one org/user must be specified")
 
+    check_secrets = not args.no_secret_check
+
     if args.once:
         conn = init_db(args.db)
-        poll_once(conn, orgs, args.rss)
+        poll_once(conn, orgs, args.rss, check_secrets=check_secrets)
         conn.close()
     else:
-        run_daemon(orgs, args.interval, args.db, args.rss)
+        run_daemon(orgs, args.interval, args.db, args.rss, check_secrets=check_secrets)
 
 if __name__ == "__main__":
     main()

@@ -81,6 +81,108 @@ All optional. The tool works out of the box with reduced rate limits.
 - `radar_feed.atom` - Atom feed
 - `gar_orgs.txt` - High-velocity repos fed to GAR for commit archiving
 
+## Threat Model & Failure Modes
+
+### Security Considerations
+
+**Spam & Gaming the Velocity Score**
+- **Risk:** Malicious actors creating repos with artificial activity (bot commits, fake PRs) to appear high-velocity
+- **Detection Patterns:**
+  - Repos with many commits but minimal code changes (indicator: high commits/LOC ratio)
+  - Single-contributor repos with sudden burst activity
+  - Repos with identical commit messages (automated spam)
+  - Forks with no actual changes (fork spam)
+- **Mitigation:** Manual review of high-velocity repos before adding to GAR
+- **Future Enhancement:** Implement spam scoring based on commit diversity, contributor authenticity, and code quality metrics
+
+**Malicious Repository Promotion**
+- **Risk:** Archiving metadata for repos containing malware, phishing, or malicious code
+- **Mitigation:** Repo Radar only archives *metadata* (repo name, description, metrics), not code
+- **Note:** High velocity score does not imply code quality or safety
+- **Recommendation:** Review repos manually before integration with production systems
+
+**API Abuse & Rate Limit Exhaustion**
+- **Risk:** Aggressive topic searches triggering GitHub rate limits
+- **Mitigation:** Built-in exponential backoff and rate limit handling
+- **Best Practice:** Use `GITHUB_TOKEN` for 5000 req/hr limit instead of 60 req/hr
+- **Monitoring:** Check logs for repeated 403/429 responses
+
+**Privacy Concerns**
+- **Risk:** Publicly indexing private repos if token has access
+- **Mitigation:** Tool only scans public repos via Events/Search APIs
+- **Verification:** Review `radar_state.db` to ensure no private repo names appear
+- **Best Practice:** Use read-only tokens with minimal scope
+
+**GAR Integration Risks**
+- **Risk:** Automatically feeding low-quality or spam repos to GAR for permanent archiving
+- **Mitigation:** Velocity threshold (default: score > 50) filters out low-activity repos
+- **Override:** Manually review `gar_orgs.txt` before starting GAR daemon
+- **Recommendation:** Set higher threshold for production use (e.g., score > 100)
+
+### Failure Modes
+
+**GitHub Events API Unavailable**
+- **Scenario:** GitHub API outage, network timeout, authentication failure
+- **Behavior:** Tool logs error and continues with topic-based search
+- **Impact:** May miss newly created repos during outage window
+- **Recovery:** Automatic - tool resumes event polling after error clears
+
+**Velocity Metric Staleness**
+- **Scenario:** GitHub API returns cached data, 7-day metrics not updated
+- **Behavior:** Tool uses stale data, may under-score genuinely active repos
+- **Impact:** High-velocity repos may be temporarily missed
+- **Recovery:** Next poll cycle fetches updated data
+
+**IPFS Pinning Failure**
+- **Scenario:** Local IPFS node down, Pinata API error, network timeout
+- **Behavior:** Tool falls back to local CIDv1 generation
+- **Impact:** CID valid but content not retrievable from IPFS network
+- **Recovery:** Re-pin repo metadata manually using CID from database
+
+**Database Corruption**
+- **Scenario:** Disk full, SQLite lock timeout, process killed mid-write
+- **Behavior:** SQLite `INSERT OR IGNORE` prevents duplicate repos
+- **Impact:** May lose recent discoveries if transaction incomplete
+- **Recovery:** Delete corrupted DB, tool rebuilds from next poll
+
+**RSS Feed Gaming**
+- **Scenario:** Spam repos dominate feed due to artificial velocity
+- **Behavior:** Feed becomes noise-filled, legitimate repos buried
+- **Impact:** Users lose trust in velocity-based discovery
+- **Mitigation:** Implement spam detection heuristics (pending enhancement)
+
+**GAR Integration File Lock**
+- **Scenario:** Concurrent access to `gar_orgs.txt` by Radar and GAR
+- **Behavior:** One process gets file lock error
+- **Impact:** Temporary failure to write/read org list
+- **Recovery:** Retry logic handles transient lock errors
+
+### Security Best Practices
+
+1. **Use GitHub Token:** Authenticate with `GITHUB_TOKEN` to avoid IP-based rate limiting
+2. **Review High-Velocity Repos:** Manually inspect repos before trusting velocity scores
+3. **Monitor Spam Patterns:** Periodically audit `radar_state.db` for anomalous repos
+4. **Set Velocity Threshold:** Adjust GAR integration threshold based on topic noise levels
+5. **Read-Only Tokens:** Use minimal-scope tokens for GitHub API access
+6. **Audit GAR Feed List:** Review `gar_orgs.txt` before starting GAR daemon
+7. **Rate Limit Monitoring:** Check logs for 403/429 responses indicating abuse
+8. **Database Backups:** Periodically backup `radar_state.db` to preserve discovery history
+
+### Velocity Scoring Validation
+
+**Defining "Genuine" Velocity:**
+- **High Commits + High Contributors + Sustained Activity** = Likely genuine
+- **High Commits + Single Contributor + Burst Activity** = Possible spam
+- **Many Forks + Low Commits** = Fork spam or template repo
+- **High PRs + Low Merged Rate** = Possible PR spam
+
+**Spam Detection Eval (Pending):**
+- Manual review of top 100 velocity-scored repos
+- Compare against human judgment of "innovation vs. noise"
+- Identify false positives (spam repos scored high)
+- Identify false negatives (innovative repos scored low)
+- Refine scoring weights based on findings
+
 ## Architecture
 
 ```
