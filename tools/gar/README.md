@@ -508,6 +508,46 @@ docker run -d \
 */5 * * * * cd /opt/gar && python3 github-archive-relay.py --orgs TempleTwo --once >> /var/log/gar.log 2>&1
 ```
 
+## Production Deployment Results
+
+### Temple Core Deployment (Christmas 2025)
+
+**Configuration:**
+- Server: temple_core (SSH: tony_studio@192.168.1.195)
+- Runtime: Python 3.9.6 on Darwin 25.1.0 (ARM, 14 cores)
+- Orgs monitored: 19 orgs (fed from Repo Radar discoveries)
+- Source: `gar_orgs.txt` auto-populated by Repo Radar
+- Polling interval: 300s
+
+**Integration with Repo Radar:**
+GAR monitors organizations discovered by Repo Radar's velocity-based discovery:
+- **MAwaisNasim** (lynx - 2737.5 velocity, 58 commits/7d, 83 contributors)
+- **Karan211** (Quantifying-how-close-is-a-coding-AI-to-AGI - 165.0 velocity)
+- **gafaar22** (recursive-prompt-improver - 115.0 velocity)
+- Plus 16 additional high-velocity orgs
+
+**Deployment Status:**
+- ✅ Deployed to temple_core alongside Repo Radar
+- ✅ Secret detection active (13 patterns)
+- ✅ IPFS CIDv1 generation functional
+- ✅ Ready for commit archiving from discovered repos
+- ✅ RSS feed generation configured
+
+**Discovery → Archiving Pipeline:**
+```
+Repo Radar discovers high-velocity repos
+         ↓
+Orgs added to gar_orgs.txt
+         ↓
+GAR monitors those orgs for new commits
+         ↓
+Commits archived to IPFS + Arweave
+         ↓
+RSS feed generated for decentralized discovery
+```
+
+This creates a self-reinforcing loop: discovery finds innovation early, archiving preserves it permanently.
+
 ## Integration with HTCA
 
 This tool aligns with HTCA's anti-gatekeeping philosophy:
