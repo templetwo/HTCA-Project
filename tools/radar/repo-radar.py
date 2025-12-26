@@ -749,6 +749,16 @@ Examples:
         help="Show database statistics and exit"
     )
     parser.add_argument(
+        "--verify-db",
+        action="store_true",
+        help="Verify database integrity and show top repos (audit mode)"
+    )
+    parser.add_argument(
+        "--verify-feeds",
+        action="store_true",
+        help="Verify RSS/Atom feeds exist and are valid"
+    )
+    parser.add_argument(
         "--verbose", "-v",
         action="store_true",
         help="Enable verbose logging"
@@ -760,6 +770,115 @@ Examples:
         logging.getLogger().setLevel(logging.DEBUG)
 
     try:
+        # Verify database integrity (audit mode)
+        if args.verify_db:
+            try:
+                if not Path(args.db).exists():
+                    log.error(f"Database not found: {args.db}")
+                    log.info("Run a scan first: python repo-radar.py --watch ai --once")
+                    return
+
+                conn = sqlite3.connect(args.db)
+
+                # Check table exists
+                cursor = conn.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='repos'")
+                if not cursor.fetchone():
+                    log.error("Database schema invalid: 'repos' table missing")
+                    conn.close()
+                    return
+
+                # Get top repos
+                cursor = conn.execute("""
+                    SELECT
+                        full_name,
+                        velocity_score,
+                        commits_7d,
+                        contributors_7d,
+                        stars,
+                        created_at,
+                        ipfs_cid
+                    FROM repos
+                    ORDER BY velocity_score DESC
+                    LIMIT 10
+                """)
+
+                repos = cursor.fetchall()
+
+                if not repos:
+                    log.info("✓ Database structure valid, but no repos discovered yet")
+                    conn.close()
+                    return
+
+                print("\n" + "="*80)
+                print("DATABASE VERIFICATION - TOP 10 HIGH-VELOCITY REPOS")
+                print("="*80 + "\n")
+
+                for i, row in enumerate(repos, 1):
+                    print(f"{i}. {row[0]}")
+                    print(f"   Velocity: {row[1]}")
+                    print(f"   Commits (7d): {row[2]}")
+                    print(f"   Contributors: {row[3]}")
+                    print(f"   Stars: {row[4]}")
+                    print(f"   Created: {row[5]}")
+                    print(f"   IPFS CID: {row[6]}")
+                    print(f"   GitHub: https://github.com/{row[0]}")
+                    print()
+
+                # Spam detection check
+                cursor = conn.execute("""
+                    SELECT COUNT(*) FROM repos
+                    WHERE commits_7d > 50 AND contributors_7d = 1
+                """)
+                spam_count = cursor.fetchone()[0]
+
+                if spam_count > 0:
+                    log.warning(f"⚠️  {spam_count} repos flagged as potential single-dev spam")
+                else:
+                    log.info("✓ No spam patterns detected")
+
+                conn.close()
+                log.info("✓ Database verification complete")
+                return
+
+            except sqlite3.Error as e:
+                log.error(f"Database verification failed: {e}")
+                return
+            except Exception as e:
+                log.error(f"Unexpected error during verification: {e}")
+                return
+
+        # Verify RSS/Atom feeds
+        if args.verify_feeds:
+            feeds = list(Path().glob('*.xml')) + list(Path().glob('*.atom'))
+
+            if not feeds:
+                log.warning("⚠️  No feeds found")
+                log.info("Feeds are generated after first discovery")
+                log.info("Run a scan: python repo-radar.py --watch ai --once")
+                return
+
+            print("\n" + "="*80)
+            print("FEED VERIFICATION")
+            print("="*80 + "\n")
+
+            for feed in feeds:
+                try:
+                    size = feed.stat().st_size
+                    print(f"✓ {feed.name} ({size:,} bytes)")
+
+                    # Basic XML validation
+                    content = feed.read_text()
+                    if '<' not in content or '>' not in content:
+                        log.error(f"  ✗ Invalid XML structure")
+                    else:
+                        log.info(f"  ✓ Valid XML structure")
+
+                except Exception as e:
+                    log.error(f"✗ {feed.name}: {e}")
+
+            log.info("\n✓ Feed verification complete")
+            return
+
         if args.stats:
             conn = init_db(args.db)
             repos = get_top_repos(conn, limit=20)
