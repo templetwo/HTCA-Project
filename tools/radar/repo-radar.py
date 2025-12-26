@@ -105,6 +105,7 @@ def init_db(db_path: str) -> sqlite3.Connection:
             name TEXT NOT NULL,
             description TEXT,
             created_at TEXT,
+            pushed_at TEXT,
             velocity_score REAL DEFAULT 0,
             commits_7d INTEGER DEFAULT 0,
             forks_7d INTEGER DEFAULT 0,
@@ -119,6 +120,14 @@ def init_db(db_path: str) -> sqlite3.Connection:
             fed_to_gar INTEGER DEFAULT 0
         )
     """)
+
+    # Migration: Add pushed_at column to existing databases
+    try:
+        conn.execute("ALTER TABLE repos ADD COLUMN pushed_at TEXT")
+        log.debug("Added pushed_at column to existing database")
+    except sqlite3.OperationalError:
+        # Column already exists
+        pass
     conn.execute("""
         CREATE TABLE IF NOT EXISTS events (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -145,16 +154,17 @@ def store_repo(conn: sqlite3.Connection, repo_data: dict) -> None:
     """Store or update repo record."""
     conn.execute("""
         INSERT OR REPLACE INTO repos
-        (full_name, owner, name, description, created_at, velocity_score,
+        (full_name, owner, name, description, created_at, pushed_at, velocity_score,
          commits_7d, forks_7d, contributors_7d, issues_7d, prs_7d, stars, watchers,
          ipfs_cid, last_seen, last_scored, fed_to_gar)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     """, (
         repo_data["full_name"],
         repo_data["owner"],
         repo_data["name"],
         repo_data.get("description", ""),
         repo_data.get("created_at"),
+        repo_data.get("pushed_at"),
         repo_data.get("velocity_score", 0),
         repo_data.get("commits_7d", 0),
         repo_data.get("forks_7d", 0),
@@ -441,6 +451,7 @@ def gather_velocity_metrics(full_name: str) -> dict:
         "watchers": 0,
         "description": "",
         "created_at": None,
+        "pushed_at": None,
         "velocity_score": 0,
         "ipfs_cid": None,
         "fed_to_gar": 0
@@ -453,6 +464,7 @@ def gather_velocity_metrics(full_name: str) -> dict:
 
     metrics["description"] = repo.get("description", "")[:500] if repo.get("description") else ""
     metrics["created_at"] = repo.get("created_at")
+    metrics["pushed_at"] = repo.get("pushed_at")
     metrics["stars"] = repo.get("stargazers_count", 0)
     metrics["watchers"] = repo.get("subscribers_count", 0)
 
