@@ -39,7 +39,7 @@ class ResponseCapture:
         Initialize response capture.
 
         Args:
-            provider: Provider name ("gemini", "openai", "anthropic")
+            provider: Provider name ("gemini", "openai", "anthropic", "ollama")
         """
         self.provider = provider
         self.responses: Dict[str, List[str]] = {
@@ -78,7 +78,10 @@ class ResponseCapture:
                 raise ValueError(f"Unknown condition: {condition}")
 
             # Generate response
-            gen = experiment.client.generate(full_prompt)
+            gen = experiment.client.generate(
+                full_prompt,
+                system_prompt=experiment.system_instruction,
+            )
 
             # Capture response text
             self.responses[condition].append(gen.text)
@@ -127,7 +130,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     parser.add_argument(
         "--provider",
         required=True,
-        choices=["gemini", "openai", "anthropic"],
+        choices=["gemini", "openai", "anthropic", "ollama"],
         help="Which backend to use",
     )
     parser.add_argument(
@@ -155,6 +158,16 @@ def main(argv: Optional[List[str]] = None) -> int:
         default=None,
         help="Optional .env file to load API keys from",
     )
+    parser.add_argument(
+        "--system-instruction",
+        default=(
+            "You are part of an efficiency benchmark. Keep both your internal"
+            " reasoning (chain-of-thought) and the outward conversational reply"
+            " to no more than 128 tokens each while remaining accurate, safe,"
+            " and collaborative."
+        ),
+        help="Optional system prompt applied to every condition. Use '' to disable.",
+    )
 
     args = parser.parse_args(argv)
 
@@ -165,6 +178,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     tone = _resolve_tone(args.tone)
     prompts = _load_prompts(args.prompts)
     client = _resolve_client(args.provider, args.model)
+    system_instruction = args.system_instruction or None
 
     print("=" * 72)
     print("HTCA Response Capture")
@@ -176,7 +190,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     print()
 
     # Create experiment and capture
-    experiment = HTCAExperiment(client)
+    experiment = HTCAExperiment(client, system_instruction=system_instruction)
     capture = ResponseCapture(provider=args.provider)
 
     # Run each condition

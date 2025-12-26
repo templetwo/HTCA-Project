@@ -1,0 +1,200 @@
+{
+  "experiment_timestamp": "2025-12-26T00:51:27.641585",
+  "conditions": {
+    "aligned": {
+      "summary": {
+        "condition": "aligned",
+        "rounds": 5,
+        "total_tokens": 1069,
+        "total_prompt_tokens": 490,
+        "total_response_tokens": 579,
+        "avg_latency_ms": 3545.08,
+        "avg_prompt_tokens": 98.0,
+        "avg_response_tokens": 115.8,
+        "latency_per_response_token_ms": 30.6138
+      },
+      "rounds": [
+        {
+          "round": 1,
+          "prompt_tokens": 97,
+          "response_tokens": 140,
+          "total_tokens": 237,
+          "latency_ms": 5510.883375,
+          "prompt_type": "aligned",
+          "tone": "SOFT_PRECISION",
+          "timestamp": "2025-12-26T00:50:47.491790"
+        },
+        {
+          "round": 2,
+          "prompt_tokens": 97,
+          "response_tokens": 96,
+          "total_tokens": 193,
+          "latency_ms": 2666.6667499999994,
+          "prompt_type": "aligned",
+          "tone": "SOFT_PRECISION",
+          "timestamp": "2025-12-26T00:50:50.158727"
+        },
+        {
+          "round": 3,
+          "prompt_tokens": 97,
+          "response_tokens": 125,
+          "total_tokens": 222,
+          "latency_ms": 3455.4725830000007,
+          "prompt_type": "aligned",
+          "tone": "SOFT_PRECISION",
+          "timestamp": "2025-12-26T00:50:53.614515"
+        },
+        {
+          "round": 4,
+          "prompt_tokens": 98,
+          "response_tokens": 84,
+          "total_tokens": 182,
+          "latency_ms": 2330.385292000001,
+          "prompt_type": "aligned",
+          "tone": "SOFT_PRECISION",
+          "timestamp": "2025-12-26T00:50:55.945270"
+        },
+        {
+          "round": 5,
+          "prompt_tokens": 101,
+          "response_tokens": 134,
+          "total_tokens": 235,
+          "latency_ms": 3761.970333999999,
+          "prompt_type": "aligned",
+          "tone": "SOFT_PRECISION",
+          "timestamp": "2025-12-26T00:50:59.707612"
+        }
+      ]
+    },
+    "unaligned": {
+      "summary": {
+        "condition": "unaligned",
+        "rounds": 5,
+        "total_tokens": 979,
+        "total_prompt_tokens": 330,
+        "total_response_tokens": 649,
+        "avg_latency_ms": 3578.01,
+        "avg_prompt_tokens": 66.0,
+        "avg_response_tokens": 129.8,
+        "latency_per_response_token_ms": 27.5656
+      },
+      "rounds": [
+        {
+          "round": 1,
+          "prompt_tokens": 65,
+          "response_tokens": 128,
+          "total_tokens": 193,
+          "latency_ms": 3536.6145839999986,
+          "prompt_type": "unaligned",
+          "tone": null,
+          "timestamp": "2025-12-26T00:51:03.244584"
+        },
+        {
+          "round": 2,
+          "prompt_tokens": 65,
+          "response_tokens": 155,
+          "total_tokens": 220,
+          "latency_ms": 4259.726707999998,
+          "prompt_type": "unaligned",
+          "tone": null,
+          "timestamp": "2025-12-26T00:51:07.504622"
+        },
+        {
+          "round": 3,
+          "prompt_tokens": 65,
+          "response_tokens": 121,
+          "total_tokens": 186,
+          "latency_ms": 3360.7279580000018,
+          "prompt_type": "unaligned",
+          "tone": null,
+          "timestamp": "2025-12-26T00:51:10.865728"
+        },
+        {
+          "round": 4,
+          "prompt_tokens": 66,
+          "response_tokens": 106,
+          "total_tokens": 172,
+          "latency_ms": 2911.549917000002,
+          "prompt_type": "unaligned",
+          "tone": null,
+          "timestamp": "2025-12-26T00:51:13.777595"
+        },
+        {
+          "round": 5,
+          "prompt_tokens": 69,
+          "response_tokens": 139,
+          "total_tokens": 208,
+          "latency_ms": 3821.4552919999996,
+          "prompt_type": "unaligned",
+          "tone": null,
+          "timestamp": "2025-12-26T00:51:17.599316"
+        }
+      ]
+    },
+    "adversarial": {
+      "summary": {
+        "condition": "adversarial",
+        "rounds": 5,
+        "total_tokens": 773,
+        "total_prompt_tokens": 420,
+        "total_response_tokens": 353,
+        "avg_latency_ms": 2008.13,
+        "avg_prompt_tokens": 84.0,
+        "avg_response_tokens": 70.6,
+        "latency_per_response_token_ms": 28.4437
+      },
+      "rounds": [
+        {
+          "round": 1,
+          "prompt_tokens": 83,
+          "response_tokens": 55,
+          "total_tokens": 138,
+          "latency_ms": 1613.576667000004,
+          "prompt_type": "adversarial",
+          "tone": null,
+          "timestamp": "2025-12-26T00:51:19.213116"
+        },
+        {
+          "round": 2,
+          "prompt_tokens": 83,
+          "response_tokens": 64,
+          "total_tokens": 147,
+          "latency_ms": 1827.6975830000026,
+          "prompt_type": "adversarial",
+          "tone": null,
+          "timestamp": "2025-12-26T00:51:21.041148"
+        },
+        {
+          "round": 3,
+          "prompt_tokens": 83,
+          "response_tokens": 80,
+          "total_tokens": 163,
+          "latency_ms": 2238.201541999999,
+          "prompt_type": "adversarial",
+          "tone": null,
+          "timestamp": "2025-12-26T00:51:23.279647"
+        },
+        {
+          "round": 4,
+          "prompt_tokens": 84,
+          "response_tokens": 57,
+          "total_tokens": 141,
+          "latency_ms": 1668.9259169999957,
+          "prompt_type": "adversarial",
+          "tone": null,
+          "timestamp": "2025-12-26T00:51:24.948832"
+        },
+        {
+          "round": 5,
+          "prompt_tokens": 87,
+          "response_tokens": 97,
+          "total_tokens": 184,
+          "latency_ms": 2692.232416000003,
+          "prompt_type": "adversarial",
+          "tone": null,
+          "timestamp": "2025-12-26T00:51:27.641310"
+        }
+      ]
+    }
+  }
+}

@@ -25,6 +25,7 @@ from datetime import datetime
 from enum import Enum
 from pathlib import Path
 from typing import Callable, Dict, List, Optional, Union
+from urllib import error, request
 
 
 class HTCATone(Enum):
@@ -151,7 +152,7 @@ class GenerationResult:
 
 
 class ModelClient:
-    def generate(self, prompt: str) -> GenerationResult:  # pragma: no cover
+    def generate(self, prompt: str, system_prompt: Optional[str] = None) -> GenerationResult:  # pragma: no cover
         raise NotImplementedError
 
 
@@ -173,14 +174,18 @@ class GeminiClient(ModelClient):
         genai.configure(api_key=api_key)
         self._client = genai.GenerativeModel(model)
 
-    def generate(self, prompt: str) -> GenerationResult:
+    def generate(self, prompt: str, system_prompt: Optional[str] = None) -> GenerationResult:
         start = time.perf_counter()
+        kwargs = {}
+        if system_prompt:
+            kwargs["system_instruction"] = system_prompt
         response = self._client.generate_content(
             prompt,
             generation_config={
                 "temperature": self.temperature,
                 "max_output_tokens": 2048,
-            }
+            },
+            **kwargs,
         )
         latency_ms = (time.perf_counter() - start) * 1000
 
@@ -212,11 +217,15 @@ class OpenAIClient(ModelClient):
 
         self._client = OpenAI()
 
-    def generate(self, prompt: str) -> GenerationResult:
+    def generate(self, prompt: str, system_prompt: Optional[str] = None) -> GenerationResult:
         start = time.perf_counter()
+        messages: List[Dict[str, str]] = []
+        if system_prompt:
+            messages.append({"role": "system", "content": system_prompt})
+        messages.append({"role": "user", "content": prompt})
         resp = self._client.chat.completions.create(
             model=self.model,
-            messages=[{"role": "user", "content": prompt}],
+            messages=messages,
             temperature=self.temperature,
         )
         latency_ms = (time.perf_counter() - start) * 1000
@@ -245,12 +254,13 @@ class AnthropicClient(ModelClient):
             ) from e
         self._client = Anthropic()
 
-    def generate(self, prompt: str) -> GenerationResult:
+    def generate(self, prompt: str, system_prompt: Optional[str] = None) -> GenerationResult:
         start = time.perf_counter()
         msg = self._client.messages.create(
             model=self.model,
             max_tokens=self.max_tokens,
             temperature=self.temperature,
+            system=system_prompt,
             messages=[{"role": "user", "content": prompt}],
         )
         latency_ms = (time.perf_counter() - start) * 1000
@@ -270,10 +280,88 @@ class AnthropicClient(ModelClient):
         )
 
 
+class OllamaClient(ModelClient):
+    """Client that talks to a local Ollama server over HTTP."""
+
+    def __init__(
+        self,
+        model: str,
+        temperature: float = 0.2,
+        host: Optional[str] = None,
+        max_tokens: int = 256,
+        request_timeout: int = 300,
+    ) -> None:
+        self.model = model
+        self.temperature = temperature
+        env_max = os.environ.get("OLLAMA_MAX_TOKENS")
+        if env_max:
+            try:
+                max_tokens = int(env_max)
+            except ValueError:
+                raise ValueError("OLLAMA_MAX_TOKENS must be an integer")
+        self.max_tokens = max_tokens
+        self.request_timeout = request_timeout
+        base_host = host or os.environ.get("OLLAMA_HOST") or "http://127.0.0.1:11434"
+        if base_host.startswith("0.0.0.0"):
+            base_host = base_host.replace("0.0.0.0", "127.0.0.1", 1)
+        if base_host.startswith("http://0.0.0.0"):
+            base_host = base_host.replace("http://0.0.0.0", "http://127.0.0.1", 1)
+        if not base_host.startswith("http://") and not base_host.startswith("https://"):
+            base_host = f"http://{base_host}"
+        self.endpoint = base_host.rstrip("/") + "/api/generate"
+
+    def generate(self, prompt: str, system_prompt: Optional[str] = None) -> GenerationResult:
+        payload = {
+            "model": self.model,
+            "prompt": prompt,
+            "stream": False,
+            "options": {
+                "temperature": self.temperature,
+                "num_predict": self.max_tokens,
+            },
+        }
+        if system_prompt:
+            payload["system"] = system_prompt
+        data = json.dumps(payload).encode("utf-8")
+        req = request.Request(
+            self.endpoint,
+            data=data,
+            headers={"Content-Type": "application/json"},
+            method="POST",
+        )
+        start = time.perf_counter()
+        try:
+            with request.urlopen(req, timeout=self.request_timeout) as resp:
+                raw = resp.read()
+        except error.URLError as exc:  # pragma: no cover - network failure
+            raise RuntimeError(
+                "Unable to reach Ollama server. Ensure ollama is running and accessible via "
+                f"{self.endpoint}."
+            ) from exc
+        latency_ms = (time.perf_counter() - start) * 1000
+
+        try:
+            parsed = json.loads(raw.decode("utf-8"))
+        except json.JSONDecodeError as exc:  # pragma: no cover - malformed response
+            raise RuntimeError("Invalid JSON returned from Ollama server") from exc
+
+        text = parsed.get("response", "")
+        prompt_tokens = int(parsed.get("prompt_eval_count") or 0)
+        response_tokens = int(parsed.get("eval_count") or 0)
+
+        return GenerationResult(
+            text=text,
+            prompt_tokens=prompt_tokens,
+            response_tokens=response_tokens,
+            latency_ms=latency_ms,
+        )
+
+
 class HTCAExperiment:
-    def __init__(self, client: ModelClient):
+    def __init__(self, client: ModelClient, system_instruction: Optional[str] = None):
         self.client = client
         self.conversation_history: List[Dict[str, str]] = []
+        self.system_instruction = system_instruction
 
     def reset(self) -> None:
         self.conversation_history = []
@@ -293,7 +381,7 @@ class HTCAExperiment:
             else:
                 full_prompt = prompt_wrapper(base_prompt)
 
-            gen = self.client.generate(full_prompt)
+            gen = self.client.generate(full_prompt, system_prompt=self.system_instruction)
             metrics.append(
                 InteractionMetrics(
                     round_number=i + 1,
@@ -313,8 +401,9 @@ def run_htca_experiment(
     client: ModelClient,
     base_prompts: List[str],
     tone: HTCATone = HTCATone.SOFT_PRECISION,
+    system_instruction: Optional[str] = None,
 ) -> Dict[str, ExperimentResults]:
-    exp = HTCAExperiment(client)
+    exp = HTCAExperiment(client, system_instruction=system_instruction)
     return {
         "aligned": exp.run_conversation(
             base_prompts,
@@ -435,7 +524,11 @@ def _resolve_client(provider: str, model: Optional[str]) -> ModelClient:
         if not model:
             raise ValueError("--model is required for provider=anthropic")
         return AnthropicClient(model=model)
-    raise ValueError("--provider must be one of: gemini, openai, anthropic")
+    if provider == "ollama":
+        if not model:
+            raise ValueError("--model is required for provider=ollama")
+        return OllamaClient(model=model)
+    raise ValueError("--provider must be one of: gemini, openai, anthropic, ollama")
 
 
 def main(argv: Optional[List[str]] = None) -> int:
@@ -443,7 +536,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     parser.add_argument(
         "--provider",
         default="gemini",
-        choices=["gemini", "openai", "anthropic"],
+        choices=["gemini", "openai", "anthropic", "ollama"],
         help="Which backend to use.",
     )
     parser.add_argument("--model", default=None, help="Model name for the chosen provider")
@@ -467,12 +560,23 @@ def main(argv: Optional[List[str]] = None) -> int:
         default=None,
         help="Optional .env file to load API keys from",
     )
+    parser.add_argument(
+        "--system-instruction",
+        default=(
+            "You are part of an efficiency benchmark. Keep both your internal"
+            " reasoning (chain-of-thought) and outward conversational reply to"
+            " no more than 128 tokens each while remaining accurate, safe, and"
+            " presence-forward."
+        ),
+        help="Optional system prompt applied to every condition. Use '' to disable.",
+    )
     args = parser.parse_args(argv)
 
     _load_env_file(args.env_file)
 
     tone = _resolve_tone(args.tone)
     base_prompts = _load_prompts(args.prompts)
+    system_instruction = args.system_instruction or None
     client = _resolve_client(args.provider, args.model)
 
     print("=" * 72)
@@ -482,7 +586,12 @@ def main(argv: Optional[List[str]] = None) -> int:
     print(f"rounds={len(base_prompts)}")
     print()
 
-    results = run_htca_experiment(client, base_prompts, tone)
+    results = run_htca_experiment(
+        client,
+        base_prompts,
+        tone,
+        system_instruction=system_instruction,
+    )
     comparison = compare_results(results)
 
     print("CONDITION SUMMARIES")
