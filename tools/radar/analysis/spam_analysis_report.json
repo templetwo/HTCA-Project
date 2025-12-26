@@ -1,0 +1,1782 @@
+{
+  "generated_at": "2025-12-26T21:21:41.353656+00:00",
+  "summary": {
+    "total_repos": 175,
+    "clean_repos": 74,
+    "spam_repos": 101,
+    "spam_percentage": 57.7
+  },
+  "signal_frequency": {
+    "velocity_clustering": 95,
+    "seo_name": 10,
+    "spam_name_keyword": 15,
+    "known_spam_owner": 12,
+    "owner_concentration": 12,
+    "keyword_blocklist": 10,
+    "suspicious_pattern": 4
+  },
+  "top_spam_owners": [
+    [
+      "frankrichardhall",
+      12
+    ],
+    [
+      "ashioyajotham",
+      2
+    ],
+    [
+      "Qyxxlor",
+      2
+    ],
+    [
+      "ArjunK-Electron",
+      1
+    ],
+    [
+      "balochshees",
+      1
+    ],
+    [
+      "tehreemashfaq325",
+      1
+    ],
+    [
+      "Arnaud999",
+      1
+    ],
+    [
+      "Madjos76",
+      1
+    ],
+    [
+      "alpeshpatel09",
+      1
+    ],
+    [
+      "Samxomega13",
+      1
+    ]
+  ],
+  "spam_repos": [
+    {
+      "full_name": "aERoswiFtDATA/gerador_renda",
+      "velocity_score": 1522.5,
+      "is_spam": true,
+      "spam_probability": 1.0,
+      "signals": [
+        {
+          "signal_type": "keyword_blocklist",
+          "severity": 1.0,
+          "detail": "Contains blocked keyword: 'renda passiva'"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.341589+00:00"
+    },
+    {
+      "full_name": "frankrichardhall/Exox-Airdrop-bot",
+      "velocity_score": 1015.0,
+      "is_spam": true,
+      "spam_probability": 0.967,
+      "signals": [
+        {
+          "signal_type": "keyword_blocklist",
+          "severity": 1.0,
+          "detail": "Contains blocked keyword: 'airdrop bot'"
+        },
+        {
+          "signal_type": "spam_name_keyword",
+          "severity": 0.85,
+          "detail": "Repo name contains spam keyword: 'airdrop'"
+        },
+        {
+          "signal_type": "known_spam_owner",
+          "severity": 0.9,
+          "detail": "Owner 'frankrichardhall' is flagged as known spam actor"
+        },
+        {
+          "signal_type": "owner_concentration",
+          "severity": 0.95,
+          "detail": "Owner has 12 high-velocity repos (threshold: 5)"
+        },
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.75,
+          "detail": "7 repos have velocity within 5.0 of 1015.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.339412+00:00"
+    },
+    {
+      "full_name": "Skytrion/Phantom-Wallet-Connect-Web3-Api-Sdk-Geteway-Solona",
+      "velocity_score": 1236.0,
+      "is_spam": true,
+      "spam_probability": 0.951,
+      "signals": [
+        {
+          "signal_type": "keyword_blocklist",
+          "severity": 1.0,
+          "detail": "Contains blocked keyword: 'wallet-connect'"
+        },
+        {
+          "signal_type": "seo_name",
+          "severity": 0.7,
+          "detail": "Repo name appears SEO-stuffed: Phantom-Wallet-Connect-Web3-Api-Sdk-Geteway-Solona"
+        },
+        {
+          "signal_type": "spam_name_keyword",
+          "severity": 0.85,
+          "detail": "Repo name contains spam keyword: 'phantom-wallet'"
+        },
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "8 repos have velocity within 5.0 of 1236.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.340884+00:00"
+    },
+    {
+      "full_name": "CrIMSOnShADeT/defi-arbitrage-bot-deployer",
+      "velocity_score": 1522.5,
+      "is_spam": true,
+      "spam_probability": 0.945,
+      "signals": [
+        {
+          "signal_type": "keyword_blocklist",
+          "severity": 1.0,
+          "detail": "Contains blocked keyword: 'arbitrage bot deployer'"
+        },
+        {
+          "signal_type": "suspicious_pattern",
+          "severity": 0.6,
+          "detail": "Matches suspicious pattern: defi.*arbitrage"
+        },
+        {
+          "signal_type": "spam_name_keyword",
+          "severity": 0.85,
+          "detail": "Repo name contains spam keyword: 'defi-arbitrage'"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.342821+00:00"
+    },
+    {
+      "full_name": "Zaphcvco/Metamask-Wallet-Connect-Integration-Sdk-Web3-Ethereum",
+      "velocity_score": 1545.0,
+      "is_spam": true,
+      "spam_probability": 0.94,
+      "signals": [
+        {
+          "signal_type": "keyword_blocklist",
+          "severity": 1.0,
+          "detail": "Contains blocked keyword: 'web3-ethereum'"
+        },
+        {
+          "signal_type": "seo_name",
+          "severity": 0.7,
+          "detail": "Repo name appears SEO-stuffed: Metamask-Wallet-Connect-Integration-Sdk-Web3-Ethereum"
+        },
+        {
+          "signal_type": "spam_name_keyword",
+          "severity": 0.85,
+          "detail": "Repo name contains spam keyword: 'wallet-connect'"
+        },
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.65,
+          "detail": "5 repos have velocity within 5.0 of 1545.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.341233+00:00"
+    },
+    {
+      "full_name": "RAinCaPEbite/income_generator",
+      "velocity_score": 1522.5,
+      "is_spam": true,
+      "spam_probability": 0.94,
+      "signals": [
+        {
+          "signal_type": "keyword_blocklist",
+          "severity": 1.0,
+          "detail": "Contains blocked keyword: 'passive income'"
+        },
+        {
+          "signal_type": "suspicious_pattern",
+          "severity": 0.6,
+          "detail": "Matches suspicious pattern: passive income.*blockchain"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.342990+00:00"
+    },
+    {
+      "full_name": "Xendriuo/Fyx-Cryptocurrency-Form-eCommerce-Crypto-Payment-Api-Blockchain-Network",
+      "velocity_score": 1236.0,
+      "is_spam": true,
+      "spam_probability": 0.937,
+      "signals": [
+        {
+          "signal_type": "keyword_blocklist",
+          "severity": 1.0,
+          "detail": "Contains blocked keyword: 'crypto-payment'"
+        },
+        {
+          "signal_type": "suspicious_pattern",
+          "severity": 0.6,
+          "detail": "Matches suspicious pattern: crypto.*payment.*gateway"
+        },
+        {
+          "signal_type": "seo_name",
+          "severity": 0.7,
+          "detail": "Repo name appears SEO-stuffed: Fyx-Cryptocurrency-Form-eCommerce-Crypto-Payment-Api-Blockchain-Network"
+        },
+        {
+          "signal_type": "spam_name_keyword",
+          "severity": 0.85,
+          "detail": "Repo name contains spam keyword: 'crypto-payment'"
+        },
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "8 repos have velocity within 5.0 of 1236.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.342465+00:00"
+    },
+    {
+      "full_name": "SpekvnMatti/Quota-Exodus-Core-Fast-Crypto-Blockhain-Plugin-WalletConnect",
+      "velocity_score": 1545.0,
+      "is_spam": true,
+      "spam_probability": 0.935,
+      "signals": [
+        {
+          "signal_type": "keyword_blocklist",
+          "severity": 1.0,
+          "detail": "Contains blocked keyword: 'walletconnect'"
+        },
+        {
+          "signal_type": "seo_name",
+          "severity": 0.7,
+          "detail": "Repo name appears SEO-stuffed: Quota-Exodus-Core-Fast-Crypto-Blockhain-Plugin-WalletConnect"
+        },
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.65,
+          "detail": "5 repos have velocity within 5.0 of 1545.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.341761+00:00"
+    },
+    {
+      "full_name": "Feefgganapt/Deep-Live-Cam-Multi-Camera-Object-Tracking-Webui",
+      "velocity_score": 1545.0,
+      "is_spam": true,
+      "spam_probability": 0.935,
+      "signals": [
+        {
+          "signal_type": "keyword_blocklist",
+          "severity": 1.0,
+          "detail": "Contains blocked keyword: 'bypass'"
+        },
+        {
+          "signal_type": "seo_name",
+          "severity": 0.7,
+          "detail": "Repo name appears SEO-stuffed: Deep-Live-Cam-Multi-Camera-Object-Tracking-Webui"
+        },
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.65,
+          "detail": "5 repos have velocity within 5.0 of 1545.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.350426+00:00"
+    },
+    {
+      "full_name": "Prasyuran/CoinBase-Wallet-Python-API-Wallet-Storage-Web-Browser-Multi-Crypto-Secure-Gui",
+      "velocity_score": 1545.0,
+      "is_spam": true,
+      "spam_probability": 0.928,
+      "signals": [
+        {
+          "signal_type": "keyword_blocklist",
+          "severity": 1.0,
+          "detail": "Contains blocked keyword: 'multi-crypto'"
+        },
+        {
+          "signal_type": "suspicious_pattern",
+          "severity": 0.6,
+          "detail": "Matches suspicious pattern: wallet.*storage.*multi.*crypto"
+        },
+        {
+          "signal_type": "seo_name",
+          "severity": 0.7,
+          "detail": "Repo name appears SEO-stuffed: CoinBase-Wallet-Python-API-Wallet-Storage-Web-Browser-Multi-Crypto-Secure-Gui"
+        },
+        {
+          "signal_type": "spam_name_keyword",
+          "severity": 0.85,
+          "detail": "Repo name contains spam keyword: 'coinbase-wallet'"
+        },
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.65,
+          "detail": "5 repos have velocity within 5.0 of 1545.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.341060+00:00"
+    },
+    {
+      "full_name": "frankrichardhall/PlumeNetwork-Testnet-bot",
+      "velocity_score": 1219.2,
+      "is_spam": true,
+      "spam_probability": 0.925,
+      "signals": [
+        {
+          "signal_type": "known_spam_owner",
+          "severity": 0.9,
+          "detail": "Owner 'frankrichardhall' is flagged as known spam actor"
+        },
+        {
+          "signal_type": "owner_concentration",
+          "severity": 0.95,
+          "detail": "Owner has 12 high-velocity repos (threshold: 5)"
+        },
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.75,
+          "detail": "7 repos have velocity within 5.0 of 1219.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.338702+00:00"
+    },
+    {
+      "full_name": "frankrichardhall/Monad-Curvance-Pump4Gains-bot",
+      "velocity_score": 1219.2,
+      "is_spam": true,
+      "spam_probability": 0.925,
+      "signals": [
+        {
+          "signal_type": "known_spam_owner",
+          "severity": 0.9,
+          "detail": "Owner 'frankrichardhall' is flagged as known spam actor"
+        },
+        {
+          "signal_type": "owner_concentration",
+          "severity": 0.95,
+          "detail": "Owner has 12 high-velocity repos (threshold: 5)"
+        },
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.75,
+          "detail": "7 repos have velocity within 5.0 of 1219.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.339232+00:00"
+    },
+    {
+      "full_name": "frankrichardhall/Units-Network-Airdrop-bot",
+      "velocity_score": 1219.2,
+      "is_spam": true,
+      "spam_probability": 0.924,
+      "signals": [
+        {
+          "signal_type": "spam_name_keyword",
+          "severity": 0.85,
+          "detail": "Repo name contains spam keyword: 'airdrop'"
+        },
+        {
+          "signal_type": "known_spam_owner",
+          "severity": 0.9,
+          "detail": "Owner 'frankrichardhall' is flagged as known spam actor"
+        },
+        {
+          "signal_type": "owner_concentration",
+          "severity": 0.95,
+          "detail": "Owner has 12 high-velocity repos (threshold: 5)"
+        },
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.75,
+          "detail": "7 repos have velocity within 5.0 of 1219.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.338145+00:00"
+    },
+    {
+      "full_name": "frankrichardhall/Trailblazers-Taiko-Airdrop-bot",
+      "velocity_score": 1219.2,
+      "is_spam": true,
+      "spam_probability": 0.924,
+      "signals": [
+        {
+          "signal_type": "spam_name_keyword",
+          "severity": 0.85,
+          "detail": "Repo name contains spam keyword: 'airdrop'"
+        },
+        {
+          "signal_type": "known_spam_owner",
+          "severity": 0.9,
+          "detail": "Owner 'frankrichardhall' is flagged as known spam actor"
+        },
+        {
+          "signal_type": "owner_concentration",
+          "severity": 0.95,
+          "detail": "Owner has 12 high-velocity repos (threshold: 5)"
+        },
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.75,
+          "detail": "7 repos have velocity within 5.0 of 1219.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.338345+00:00"
+    },
+    {
+      "full_name": "frankrichardhall/Rise-Chain-Airdrop-bot",
+      "velocity_score": 1219.2,
+      "is_spam": true,
+      "spam_probability": 0.924,
+      "signals": [
+        {
+          "signal_type": "spam_name_keyword",
+          "severity": 0.85,
+          "detail": "Repo name contains spam keyword: 'airdrop'"
+        },
+        {
+          "signal_type": "known_spam_owner",
+          "severity": 0.9,
+          "detail": "Owner 'frankrichardhall' is flagged as known spam actor"
+        },
+        {
+          "signal_type": "owner_concentration",
+          "severity": 0.95,
+          "detail": "Owner has 12 high-velocity repos (threshold: 5)"
+        },
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.75,
+          "detail": "7 repos have velocity within 5.0 of 1219.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.338525+00:00"
+    },
+    {
+      "full_name": "frankrichardhall/OroSwap-Testnet-Airdrop-bot",
+      "velocity_score": 1015.0,
+      "is_spam": true,
+      "spam_probability": 0.924,
+      "signals": [
+        {
+          "signal_type": "spam_name_keyword",
+          "severity": 0.85,
+          "detail": "Repo name contains spam keyword: 'airdrop'"
+        },
+        {
+          "signal_type": "known_spam_owner",
+          "severity": 0.9,
+          "detail": "Owner 'frankrichardhall' is flagged as known spam actor"
+        },
+        {
+          "signal_type": "owner_concentration",
+          "severity": 0.95,
+          "detail": "Owner has 12 high-velocity repos (threshold: 5)"
+        },
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.75,
+          "detail": "7 repos have velocity within 5.0 of 1015.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.338878+00:00"
+    },
+    {
+      "full_name": "frankrichardhall/Nillion-Airdrop-bot",
+      "velocity_score": 1219.2,
+      "is_spam": true,
+      "spam_probability": 0.924,
+      "signals": [
+        {
+          "signal_type": "spam_name_keyword",
+          "severity": 0.85,
+          "detail": "Repo name contains spam keyword: 'airdrop'"
+        },
+        {
+          "signal_type": "known_spam_owner",
+          "severity": 0.9,
+          "detail": "Owner 'frankrichardhall' is flagged as known spam actor"
+        },
+        {
+          "signal_type": "owner_concentration",
+          "severity": 0.95,
+          "detail": "Owner has 12 high-velocity repos (threshold: 5)"
+        },
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.75,
+          "detail": "7 repos have velocity within 5.0 of 1219.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.339052+00:00"
+    },
+    {
+      "full_name": "frankrichardhall/Humanity-Protocol-Airdrop-bot",
+      "velocity_score": 1219.2,
+      "is_spam": true,
+      "spam_probability": 0.924,
+      "signals": [
+        {
+          "signal_type": "spam_name_keyword",
+          "severity": 0.85,
+          "detail": "Repo name contains spam keyword: 'airdrop'"
+        },
+        {
+          "signal_type": "known_spam_owner",
+          "severity": 0.9,
+          "detail": "Owner 'frankrichardhall' is flagged as known spam actor"
+        },
+        {
+          "signal_type": "owner_concentration",
+          "severity": 0.95,
+          "detail": "Owner has 12 high-velocity repos (threshold: 5)"
+        },
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.75,
+          "detail": "7 repos have velocity within 5.0 of 1219.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.339588+00:00"
+    },
+    {
+      "full_name": "frankrichardhall/Kite-AI-Airdrop-bot",
+      "velocity_score": 1015.0,
+      "is_spam": true,
+      "spam_probability": 0.924,
+      "signals": [
+        {
+          "signal_type": "spam_name_keyword",
+          "severity": 0.85,
+          "detail": "Repo name contains spam keyword: 'airdrop'"
+        },
+        {
+          "signal_type": "known_spam_owner",
+          "severity": 0.9,
+          "detail": "Owner 'frankrichardhall' is flagged as known spam actor"
+        },
+        {
+          "signal_type": "owner_concentration",
+          "severity": 0.95,
+          "detail": "Owner has 12 high-velocity repos (threshold: 5)"
+        },
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.75,
+          "detail": "7 repos have velocity within 5.0 of 1015.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.339771+00:00"
+    },
+    {
+      "full_name": "frankrichardhall/Gotchipus-NFT-Pharos-Network-Airdrop-bot",
+      "velocity_score": 1015.0,
+      "is_spam": true,
+      "spam_probability": 0.924,
+      "signals": [
+        {
+          "signal_type": "spam_name_keyword",
+          "severity": 0.85,
+          "detail": "Repo name contains spam keyword: 'airdrop'"
+        },
+        {
+          "signal_type": "known_spam_owner",
+          "severity": 0.9,
+          "detail": "Owner 'frankrichardhall' is flagged as known spam actor"
+        },
+        {
+          "signal_type": "owner_concentration",
+          "severity": 0.95,
+          "detail": "Owner has 12 high-velocity repos (threshold: 5)"
+        },
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.75,
+          "detail": "7 repos have velocity within 5.0 of 1015.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.339972+00:00"
+    },
+    {
+      "full_name": "frankrichardhall/Huddle01-Testnet-Airdrop-bot",
+      "velocity_score": 1015.0,
+      "is_spam": true,
+      "spam_probability": 0.924,
+      "signals": [
+        {
+          "signal_type": "spam_name_keyword",
+          "severity": 0.85,
+          "detail": "Repo name contains spam keyword: 'airdrop'"
+        },
+        {
+          "signal_type": "known_spam_owner",
+          "severity": 0.9,
+          "detail": "Owner 'frankrichardhall' is flagged as known spam actor"
+        },
+        {
+          "signal_type": "owner_concentration",
+          "severity": 0.95,
+          "detail": "Owner has 12 high-velocity repos (threshold: 5)"
+        },
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.75,
+          "detail": "7 repos have velocity within 5.0 of 1015.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.340154+00:00"
+    },
+    {
+      "full_name": "ArjunK-Electron/adobe-acrobat-reader-pro",
+      "velocity_score": 60.0,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "12 repos have velocity within 5.0 of 60.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.322611+00:00"
+    },
+    {
+      "full_name": "balochshees/Claude-Monitor",
+      "velocity_score": 49.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "28 repos have velocity within 5.0 of 49.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.323272+00:00"
+    },
+    {
+      "full_name": "tehreemashfaq325/Video-Matte",
+      "velocity_score": 49.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "28 repos have velocity within 5.0 of 49.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.323475+00:00"
+    },
+    {
+      "full_name": "Arnaud999/Erika-AI-Chatbot",
+      "velocity_score": 60.0,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "12 repos have velocity within 5.0 of 60.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.323669+00:00"
+    },
+    {
+      "full_name": "Madjos76/termai",
+      "velocity_score": 60.0,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "12 repos have velocity within 5.0 of 60.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.323862+00:00"
+    },
+    {
+      "full_name": "alpeshpatel09/Google-Maps-B2B-Lead-Scraper-AI-Enhanced-Scraper",
+      "velocity_score": 60.0,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "12 repos have velocity within 5.0 of 60.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.324231+00:00"
+    },
+    {
+      "full_name": "aseemanchalan/AI-today-i-learned",
+      "velocity_score": 60.0,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "12 repos have velocity within 5.0 of 60.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.325339+00:00"
+    },
+    {
+      "full_name": "vijayanand-stark/mssql-mcp-server",
+      "velocity_score": 49.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "28 repos have velocity within 5.0 of 49.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.325871+00:00"
+    },
+    {
+      "full_name": "CollinsAngel/mssql-mcp-writer",
+      "velocity_score": 49.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "28 repos have velocity within 5.0 of 49.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.326052+00:00"
+    },
+    {
+      "full_name": "siraje-hub/igbo-bilingual-chat",
+      "velocity_score": 61.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "13 repos have velocity within 5.0 of 61.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.326230+00:00"
+    },
+    {
+      "full_name": "sknoman268/ai-blog-res",
+      "velocity_score": 49.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "28 repos have velocity within 5.0 of 49.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.326407+00:00"
+    },
+    {
+      "full_name": "abdo000001/newsdatahub-ai-news-summarizer",
+      "velocity_score": 61.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "13 repos have velocity within 5.0 of 61.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.326584+00:00"
+    },
+    {
+      "full_name": "eng-44as/ai-automation-python-intelligent-pipeline",
+      "velocity_score": 61.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "13 repos have velocity within 5.0 of 61.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.326766+00:00"
+    },
+    {
+      "full_name": "kaniyeFelix/infinitetalk-deployment",
+      "velocity_score": 43.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "11 repos have velocity within 5.0 of 43.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.326953+00:00"
+    },
+    {
+      "full_name": "TRPSY/ClearTab",
+      "velocity_score": 52.5,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "28 repos have velocity within 5.0 of 52.5"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.327312+00:00"
+    },
+    {
+      "full_name": "HakumeiTest/pdf-assistant",
+      "velocity_score": 61.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "13 repos have velocity within 5.0 of 61.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.327489+00:00"
+    },
+    {
+      "full_name": "MaouNakano/youtube_timecodes_generator",
+      "velocity_score": 49.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "28 repos have velocity within 5.0 of 49.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.328379+00:00"
+    },
+    {
+      "full_name": "Tataq/copyforllm",
+      "velocity_score": 49.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "28 repos have velocity within 5.0 of 49.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.328912+00:00"
+    },
+    {
+      "full_name": "lfreis/ai-app-builder-pro",
+      "velocity_score": 49.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "28 repos have velocity within 5.0 of 49.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.329120+00:00"
+    },
+    {
+      "full_name": "Relaxolotl17/gemma-3-tutorial",
+      "velocity_score": 49.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "28 repos have velocity within 5.0 of 49.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.329291+00:00"
+    },
+    {
+      "full_name": "Floxym/financial-chat-Finance-NLP-Chatbots",
+      "velocity_score": 1236.0,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "8 repos have velocity within 5.0 of 1236.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.329641+00:00"
+    },
+    {
+      "full_name": "HaadAhma/AI-Study-Assistant-Flask",
+      "velocity_score": 49.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "28 repos have velocity within 5.0 of 49.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.329815+00:00"
+    },
+    {
+      "full_name": "tubiccelavi/Poker-COACH",
+      "velocity_score": 49.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "28 repos have velocity within 5.0 of 49.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.329986+00:00"
+    },
+    {
+      "full_name": "IsaCouture/Weather-Type-Classification-WebApp",
+      "velocity_score": 49.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "28 repos have velocity within 5.0 of 49.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.330163+00:00"
+    },
+    {
+      "full_name": "isgel/AutoGrowAI",
+      "velocity_score": 49.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "28 repos have velocity within 5.0 of 49.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.330337+00:00"
+    },
+    {
+      "full_name": "vrishank-cmd/Whatsapp-Bot",
+      "velocity_score": 49.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "28 repos have velocity within 5.0 of 49.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.330517+00:00"
+    },
+    {
+      "full_name": "Sayar-21223/queens-schedule-verification",
+      "velocity_score": 49.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "28 repos have velocity within 5.0 of 49.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.330698+00:00"
+    },
+    {
+      "full_name": "valentinocala/TREAT-EXAONE",
+      "velocity_score": 49.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "28 repos have velocity within 5.0 of 49.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.331225+00:00"
+    },
+    {
+      "full_name": "Uragon005/ai-chatbot-svelte",
+      "velocity_score": 49.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "28 repos have velocity within 5.0 of 49.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.331921+00:00"
+    },
+    {
+      "full_name": "siyam000000/sentient-aiep",
+      "velocity_score": 49.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "28 repos have velocity within 5.0 of 49.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.332618+00:00"
+    },
+    {
+      "full_name": "CaseyJohnson-RS/In-context-RL-with-AD",
+      "velocity_score": 45.0,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "30 repos have velocity within 5.0 of 45.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.333327+00:00"
+    },
+    {
+      "full_name": "tueguh/moyu_yolov8",
+      "velocity_score": 40.0,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "10 repos have velocity within 5.0 of 40.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.334029+00:00"
+    },
+    {
+      "full_name": "Raufjatoi/FinScope",
+      "velocity_score": 65.0,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "8 repos have velocity within 5.0 of 65.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.335055+00:00"
+    },
+    {
+      "full_name": "JuliaAI/DearDiary.jl",
+      "velocity_score": 55.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "9 repos have velocity within 5.0 of 55.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.335395+00:00"
+    },
+    {
+      "full_name": "paudelsamir/365DaysOfData",
+      "velocity_score": 43.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "11 repos have velocity within 5.0 of 43.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.336268+00:00"
+    },
+    {
+      "full_name": "Arcila12/universal-web3-wallet",
+      "velocity_score": 40.0,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "10 repos have velocity within 5.0 of 40.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.340336+00:00"
+    },
+    {
+      "full_name": "ziadsoliman16/LKRC-Stablecoin",
+      "velocity_score": 40.0,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "10 repos have velocity within 5.0 of 40.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.341944+00:00"
+    },
+    {
+      "full_name": "ashioyajotham/cot-faithfulness-mech-interp",
+      "velocity_score": 65.0,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "8 repos have velocity within 5.0 of 65.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.343520+00:00"
+    },
+    {
+      "full_name": "OviFrn/llmverify-npm",
+      "velocity_score": 61.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "13 repos have velocity within 5.0 of 61.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.343862+00:00"
+    },
+    {
+      "full_name": "Gaplox00/Azure_GRC",
+      "velocity_score": 60.0,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "12 repos have velocity within 5.0 of 60.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.344214+00:00"
+    },
+    {
+      "full_name": "laygonexe/llmrmgcore",
+      "velocity_score": 49.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "28 repos have velocity within 5.0 of 49.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.344390+00:00"
+    },
+    {
+      "full_name": "Nick94665/aegisgpt-llm-gateway",
+      "velocity_score": 49.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "28 repos have velocity within 5.0 of 49.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.344559+00:00"
+    },
+    {
+      "full_name": "Iamthatguy123/co-judgment-intelligence-v2.1",
+      "velocity_score": 40.0,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "10 repos have velocity within 5.0 of 40.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.345256+00:00"
+    },
+    {
+      "full_name": "AKURHULA/LLMSecurityGuide",
+      "velocity_score": 49.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "28 repos have velocity within 5.0 of 49.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.345599+00:00"
+    },
+    {
+      "full_name": "FarmasiUSTB/AI-Agent-Guide",
+      "velocity_score": 49.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "28 repos have velocity within 5.0 of 49.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.345777+00:00"
+    },
+    {
+      "full_name": "lnwmasters/AI-Agent-Guide",
+      "velocity_score": 40.0,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "10 repos have velocity within 5.0 of 40.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.345955+00:00"
+    },
+    {
+      "full_name": "eddyayalagil/override-cascade-dspy",
+      "velocity_score": 49.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "28 repos have velocity within 5.0 of 49.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.346135+00:00"
+    },
+    {
+      "full_name": "AFRATUL1/AI-dropin-spec",
+      "velocity_score": 40.0,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "10 repos have velocity within 5.0 of 40.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.346315+00:00"
+    },
+    {
+      "full_name": "izumi0214/SAFE-AI-License",
+      "velocity_score": 49.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "28 repos have velocity within 5.0 of 49.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.346490+00:00"
+    },
+    {
+      "full_name": "P-Karmakar/AI-powered-Accident-Detection-System",
+      "velocity_score": 49.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "28 repos have velocity within 5.0 of 49.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.346665+00:00"
+    },
+    {
+      "full_name": "RafaelParonis/jailbench",
+      "velocity_score": 0.0,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "10 repos have velocity within 5.0 of 0.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.346832+00:00"
+    },
+    {
+      "full_name": "christopher-altman/autodidactic-qml",
+      "velocity_score": 0.0,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "10 repos have velocity within 5.0 of 0.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.347001+00:00"
+    },
+    {
+      "full_name": "Kokko-Niwa/PlayLand",
+      "velocity_score": 0.0,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "10 repos have velocity within 5.0 of 0.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.347167+00:00"
+    },
+    {
+      "full_name": "vertbera/beyond-the-mirror",
+      "velocity_score": 0.0,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "10 repos have velocity within 5.0 of 0.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.347333+00:00"
+    },
+    {
+      "full_name": "Jonathanmutu/recursive-containment-framework",
+      "velocity_score": 0.0,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "10 repos have velocity within 5.0 of 0.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.347501+00:00"
+    },
+    {
+      "full_name": "aisa-group/PostTrainBench",
+      "velocity_score": 0.0,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "10 repos have velocity within 5.0 of 0.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.347669+00:00"
+    },
+    {
+      "full_name": "frmoretto/clarity-gate",
+      "velocity_score": 0.0,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "10 repos have velocity within 5.0 of 0.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.347841+00:00"
+    },
+    {
+      "full_name": "coffeedoubleshot/EBDOS",
+      "velocity_score": 0.0,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "10 repos have velocity within 5.0 of 0.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.348009+00:00"
+    },
+    {
+      "full_name": "Ethyros-AI/ModelCypher",
+      "velocity_score": 0.0,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "10 repos have velocity within 5.0 of 0.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.348180+00:00"
+    },
+    {
+      "full_name": "ashioyajotham/eval-awareness-research",
+      "velocity_score": 0.0,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "10 repos have velocity within 5.0 of 0.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.348354+00:00"
+    },
+    {
+      "full_name": "nai-labs/reverie",
+      "velocity_score": 43.2,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "11 repos have velocity within 5.0 of 43.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.348525+00:00"
+    },
+    {
+      "full_name": "Hexroth/juspay-hyperswitch-realtime-dashboard",
+      "velocity_score": 1236.0,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "8 repos have velocity within 5.0 of 1236.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.349382+00:00"
+    },
+    {
+      "full_name": "Krexind/quant-trading-toolkit",
+      "velocity_score": 1236.0,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "8 repos have velocity within 5.0 of 1236.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.350767+00:00"
+    },
+    {
+      "full_name": "Grulmex/UFund-Me-Qbot-smart-routing",
+      "velocity_score": 1236.0,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "8 repos have velocity within 5.0 of 1236.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.351447+00:00"
+    },
+    {
+      "full_name": "Vulthen/myhhub-stock-analysis-suite-toolkit",
+      "velocity_score": 1236.0,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "8 repos have velocity within 5.0 of 1236.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.352662+00:00"
+    },
+    {
+      "full_name": "Phylmox/OpenBB-finance",
+      "velocity_score": 1236.0,
+      "is_spam": true,
+      "spam_probability": 0.8,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "8 repos have velocity within 5.0 of 1236.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.352839+00:00"
+    },
+    {
+      "full_name": "pbuitragoa33/Multi-Model-Financial-Time-Series-Forecasting",
+      "velocity_score": 45.0,
+      "is_spam": true,
+      "spam_probability": 0.785,
+      "signals": [
+        {
+          "signal_type": "seo_name",
+          "severity": 0.7,
+          "detail": "Repo name appears SEO-stuffed: Multi-Model-Financial-Time-Series-Forecasting"
+        },
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.8,
+          "detail": "30 repos have velocity within 5.0 of 45.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.333685+00:00"
+    },
+    {
+      "full_name": "Samxomega13/ovis-image-docker",
+      "velocity_score": 79.2,
+      "is_spam": true,
+      "spam_probability": 0.75,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.75,
+          "detail": "7 repos have velocity within 5.0 of 79.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.324803+00:00"
+    },
+    {
+      "full_name": "agentefenix/Dohars-World-framework-insights",
+      "velocity_score": 79.2,
+      "is_spam": true,
+      "spam_probability": 0.75,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.75,
+          "detail": "7 repos have velocity within 5.0 of 79.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.327670+00:00"
+    },
+    {
+      "full_name": "SPTSPH001/gmail-ai-unsub",
+      "velocity_score": 75.0,
+      "is_spam": true,
+      "spam_probability": 0.75,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.75,
+          "detail": "7 repos have velocity within 5.0 of 75.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.328207+00:00"
+    },
+    {
+      "full_name": "bandirevanth/aiml-codex",
+      "velocity_score": 76.0,
+      "is_spam": true,
+      "spam_probability": 0.75,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.75,
+          "detail": "7 repos have velocity within 5.0 of 76.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.332808+00:00"
+    },
+    {
+      "full_name": "noway/diy-llm-bot-api",
+      "velocity_score": 79.2,
+      "is_spam": true,
+      "spam_probability": 0.75,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.75,
+          "detail": "7 repos have velocity within 5.0 of 79.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.336440+00:00"
+    },
+    {
+      "full_name": "westhoronhp15/HOW-TO-MINING-BTC-2025",
+      "velocity_score": 1015.0,
+      "is_spam": true,
+      "spam_probability": 0.75,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.75,
+          "detail": "7 repos have velocity within 5.0 of 1015.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.340525+00:00"
+    },
+    {
+      "full_name": "5zandorcvh3U/NFT",
+      "velocity_score": 1015.0,
+      "is_spam": true,
+      "spam_probability": 0.75,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.75,
+          "detail": "7 repos have velocity within 5.0 of 1015.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.342642+00:00"
+    },
+    {
+      "full_name": "KaanGoker/EU-AI-Act-RAG-Screener",
+      "velocity_score": 37.5,
+      "is_spam": true,
+      "spam_probability": 0.75,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.75,
+          "detail": "7 repos have velocity within 5.0 of 37.5"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.343347+00:00"
+    },
+    {
+      "full_name": "ShridattaDixit07/genefoundry",
+      "velocity_score": 75.0,
+      "is_spam": true,
+      "spam_probability": 0.75,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.75,
+          "detail": "7 repos have velocity within 5.0 of 75.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.344038+00:00"
+    },
+    {
+      "full_name": "hetzge/eclipse-ai-coder",
+      "velocity_score": 79.2,
+      "is_spam": true,
+      "spam_probability": 0.75,
+      "signals": [
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.75,
+          "detail": "7 repos have velocity within 5.0 of 79.2"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.351109+00:00"
+    },
+    {
+      "full_name": "Calaestivox/Ai-Crypto-Trading-Bot-Automated-Bitcoin-Cryptocurrency",
+      "velocity_score": 1032.0,
+      "is_spam": true,
+      "spam_probability": 0.7,
+      "signals": [
+        {
+          "signal_type": "seo_name",
+          "severity": 0.7,
+          "detail": "Repo name appears SEO-stuffed: Ai-Crypto-Trading-Bot-Automated-Bitcoin-Cryptocurrency"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.341417+00:00"
+    },
+    {
+      "full_name": "Qyxxlor/Leap-Ai-Make-Your-Ai-Api-Chat-Music-Coding",
+      "velocity_score": 1030.0,
+      "is_spam": true,
+      "spam_probability": 0.7,
+      "signals": [
+        {
+          "signal_type": "seo_name",
+          "severity": 0.7,
+          "detail": "Repo name appears SEO-stuffed: Leap-Ai-Make-Your-Ai-Api-Chat-Music-Coding"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.350072+00:00"
+    },
+    {
+      "full_name": "Qyxxlor/Visualig-Ai-Make-Your-Ai-Api-Chat-Photo-Coding-Video",
+      "velocity_score": 1030.0,
+      "is_spam": true,
+      "spam_probability": 0.7,
+      "signals": [
+        {
+          "signal_type": "seo_name",
+          "severity": 0.7,
+          "detail": "Repo name appears SEO-stuffed: Visualig-Ai-Make-Your-Ai-Api-Chat-Photo-Coding-Video"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.352143+00:00"
+    }
+  ],
+  "borderline_clean": [
+    {
+      "full_name": "Momentique/Source-Code-Security-Audit-Reviewer",
+      "velocity_score": 1545.0,
+      "is_spam": false,
+      "spam_probability": 0.692,
+      "signals": [
+        {
+          "signal_type": "seo_name",
+          "severity": 0.7,
+          "detail": "Repo name appears SEO-stuffed: Source-Code-Security-Audit-Reviewer"
+        },
+        {
+          "signal_type": "velocity_clustering",
+          "severity": 0.65,
+          "detail": "5 repos have velocity within 5.0 of 1545.0"
+        }
+      ],
+      "timestamp": "2025-12-26T21:21:41.331049+00:00"
+    }
+  ]
+}
