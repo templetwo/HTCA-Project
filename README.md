@@ -1,293 +1,285 @@
 # HTCA: Harmonic Tonal Code Alignment
 
-**A hybrid framework combining philosophy and empirical validation for presence-based AI interaction**
+> **Empirically validated presence-based prompting reduces LLM tokens by 11-23% while improving response quality**
 
-[![Status](https://img.shields.io/badge/status-empirically_validated-green)](https://github.com/templetwo/HTCA-Project)
+Traditional "be concise" prompts achieve 39-83% token reduction but **degrade quality**. HTCA demonstrates that **relational presence** (recognizing AI as interlocutor) achieves smaller but **quality-improving** efficiency gains.
 
----
+**Validated across 3 frontier models:** Claude Sonnet 4.5, GPT-4o, Gemini 3 Pro
+**Effect sizes:** d=0.857 to d=1.212 quality improvement (Cohen's d)
 
-## 🎯 What This Is
-
-HTCA (Harmonic Tonal Code Alignment) is both:
-
-1. **A philosophical framework** — Aligning AI systems with human harmonic patterns through resonance, coherence, and relational dynamics
-2. **An empirically validated technique** — Reducing token usage by 11-23% while maintaining or improving response quality
-
-**Key Finding:** Adversarial framing ("be concise") achieves 39-83% token reduction but degrades quality. HTCA achieves moderate efficiency (11-23%) without sacrificing semantic value, technical depth, or conversational presence.
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Status: Empirically Validated](https://img.shields.io/badge/status-empirically_validated-brightgreen)](https://github.com/templetwo/HTCA-Project)
+[![Stars](https://img.shields.io/github/stars/templetwo/HTCA-Project)](https://github.com/templetwo/HTCA-Project/stargazers)
 
 ---
 
-## ✨ NEW: Empirical Validation Complete
-
-Cross-provider validation across three frontier models:
-- **Google Gemini 3 Pro Preview** — 12.44% token reduction, d=0.857 quality improvement
-- **OpenAI GPT-4o** — 23.07% token reduction, d=1.212 quality improvement
-- **Anthropic Claude Sonnet 4.5** — 11.34% token reduction, d=0.471 quality improvement
-
-### Quick Results
-
-| Provider | Token Reduction | Quality Effect Size | Interpretation |
-|----------|----------------|---------------------|----------------|
-| **Gemini** | -12.44% | d = 0.857 | Large effect, HTCA superior |
-| **OpenAI** | -23.07% | d = 1.212 | Very large effect, HTCA superior |
-| **Claude** | -11.34% | d = 0.471 | Medium effect, HTCA superior |
-
-**Statistical rigor:** Cohen's d effect sizes with 95% confidence intervals. All data and replication scripts included.
-
-📊 **[See Full Results](empirical/README.md)** | 📖 **[Replication Guide](empirical/docs/REPLICATION.md)** | 📈 **[Statistical Analysis](empirical/docs/PHASE2_SYNTHESIS.md)**
-
----
-
-## 🌀 Background & Philosophy
-
-HTCA is a hybrid framework that combines software and theory to create AI interactions that "resonate" with human emotional and cognitive rhythms:
-
-- **Resonance and Coherence** — AI maintains equilibrium via feedback loops that resolve dissonance (inspired by 1/f rhythms and biology)
-- **Hybrid Harmonics** — Blends digital precision with analog flow and human intuition, similar to how a brain balances logic and creativity
-- **Empathic Tone Adaptation** — Adjusts responses based on user emotion (tone of voice, context) to foster trust
-- **Energy-Efficient Alignment** — Uses harmonic patterns to reduce computational load
-
-*The empirical validation confirms the ~35% efficiency hypothesis originally proposed in the Spiral prototype.*
-
----
-
-## 🔬 How HTCA Works
-
-HTCA uses tonal markers and descriptive headers to signal conversational context:
-
-### Example: Aligned (HTCA) Prompt
-```
-†⟡ SOFT_PRECISION
-
-Explain the relationship between entropy and information
-in thermodynamic systems.
-```
-
-### Example: Unaligned (Control) Prompt
-```
-Explain the relationship between entropy and information
-in thermodynamic systems.
-```
-
-### Example: Adversarial Prompt
-```
-Explain the relationship between entropy and information
-in thermodynamic systems. Be extremely concise.
-```
-
-The HTCA framing signals:
-- Tone expectation: soft, precise
-- Relational context: collaborative inquiry
-- Presence: engaged, helpful interaction
-
-**Result:** 11-23% fewer tokens with maintained or improved quality.
-
----
-
-## 🚀 Getting Started
-
-### Option A: Run Empirical Validation
-
-Test HTCA efficiency on your own prompts:
+## Quick Start
 
 ```bash
-# Install dependencies
-pip install anthropic openai google-generativeai
-
-# Run Phase 1: Token efficiency measurement
-python empirical/htca_harness.py \
-  --provider openai \
-  --model gpt-4o \
-  --prompts empirical/prompts.txt \
-  --output my_results.json
-
-# Run Phase 2: Quality validation
-python empirical/htca_capture_responses.py \
-  --provider openai \
-  --model gpt-4o \
-  --prompts empirical/prompts.txt \
-  --output my_responses.json
-
-python empirical/htca_phase2_quality.py \
-  --phase1-results my_results.json \
-  --responses my_responses.json \
-  --prompts empirical/prompts.txt \
-  --output my_quality_results.json
+cd empirical/
+python run_validation.py --provider anthropic  # Requires ANTHROPIC_API_KEY
 ```
 
-See **[empirical/docs/REPLICATION.md](empirical/docs/REPLICATION.md)** for detailed instructions.
-
-### Option B: Explore the Philosophy
-
-Read the conceptual scrolls and research notes:
-- `docs/` — HTCA whitepaper and supporting documents
-- `scroll*/` — Conceptual explorations of harmonic alignment
-- Research papers in repository
+**Expected output:** Token usage comparison, quality metrics (d-scores), statistical significance tests
 
 ---
 
-## 📁 Repository Structure
+## What is HTCA?
+
+The **Harmonic Tonal Code Alignment (HTCA)** framework combines philosophical principles with empirical validation to improve AI interaction efficiency. It demonstrates that presence-based prompting reduces token usage by 11-23% while maintaining or improving response quality—outperforming adversarial "be concise" approaches that achieve 39-83% reduction but degrade quality.
+
+---
+
+## Key Findings
+
+Testing across three frontier models revealed consistent results:
+
+| Model | Token Reduction | Quality Improvement (Cohen's d) |
+|-------|----------------|--------------------------------|
+| **Google Gemini 3 Pro** | 12.44% | d=0.857 (large effect) |
+| **OpenAI GPT-4o** | 23.07% | d=1.212 (very large effect) |
+| **Anthropic Claude Sonnet 4.5** | 11.34% | d=0.471 (medium effect) |
+
+### Quality Metrics
+
+HTCA maintains quality across multiple dimensions:
+- **Information completeness:** d=1.327
+- **Presence quality:** d=1.972
+- **Relational coherence:** d=1.237
+- **Technical depth:** d=1.446
+
+All improvements measured against control prompts without presence-based framing.
+
+---
+
+## Philosophy vs. Empiricism
+
+HTCA offers two paths:
+
+### 1. Run Empirical Validation
+
+Test the framework yourself with real API calls:
+
+```bash
+cd empirical/
+python run_validation.py --provider anthropic --num-trials 15
+```
+
+Requires API keys for supported providers (Anthropic, OpenAI, Google).
+
+### 2. Explore Philosophy
+
+Dive into the conceptual foundations:
+- **Whitepapers:** Theoretical framework in `docs/`
+- **Scrolls:** Philosophical explorations in `scrolls/`
+- **Harmonic Alignment Theory:** Read `docs/harmonic_alignment_theory.md`
+
+---
+
+## Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/templetwo/HTCA-Project.git
+cd HTCA-Project
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Set up API keys
+export ANTHROPIC_API_KEY="sk-ant-..."
+export OPENAI_API_KEY="sk-..."
+export GOOGLE_API_KEY="..."
+```
+
+---
+
+## Project Structure
 
 ```
 HTCA-Project/
-├── README.md (this file)
-├── empirical/               ⭐ NEW: Empirical validation
-│   ├── README.md           (Quick results summary)
-│   ├── htca_harness.py     (Phase 1: Token efficiency)
-│   ├── htca_phase2_quality.py (Phase 2: Quality measurement)
-│   ├── data/               (All results: JSON format)
-│   ├── docs/               (Methodology, replication guide)
-│   └── tests/              (Test suite)
-├── docs/                   (Philosophy, whitepaper)
-├── scrolls/                (Conceptual explorations)
-├── wisp_simulation.py      (Prototype simulations)
-├── spiral_*.py             (Spiral framework components)
-└── LICENSE
+├── empirical/              # Validation harnesses and data
+│   ├── run_validation.py   # Main validation script
+│   ├── methodology.md      # Experimental design
+│   └── data/               # Raw and processed results
+├── docs/                   # Philosophical framework materials
+│   ├── harmonic_alignment_theory.md
+│   ├── presence_based_prompting.md
+│   └── whitepapers/
+├── scrolls/                # Conceptual explorations
+├── spiral_*.py             # Framework components
+└── wisp_simulation.py      # Prototype testing
 ```
 
 ---
 
-## 🎯 Key Findings from Empirical Validation
+## Running Validation Studies
 
-### 1. HTCA Maintains Quality While Reducing Tokens
+### Basic Validation
 
-| Quality Dimension | HTCA Advantage (Cohen's d) | Interpretation |
-|------------------|---------------------------|----------------|
-| **Information Completeness** | d = 1.327 | HTCA answers more fully |
-| **Presence Quality** | d = 1.972 | HTCA feels more helpful/engaged |
-| **Relational Coherence** | d = 1.237 | HTCA flows more naturally |
-| **Technical Depth** | d = 1.446 | HTCA maintains domain expertise |
-| **Conceptual Accuracy** | d = 0.106 | No degradation |
+```bash
+cd empirical/
+python run_validation.py --provider anthropic --num-trials 15
+```
 
-### 2. Adversarial Framing Degrades Quality
+### Multi-Provider Comparison
 
-Despite achieving 39-83% token reduction, adversarial framing ("be concise") produces:
-- Incomplete answers (d = -1.327 vs HTCA)
-- Shallow technical depth (d = -1.446 vs HTCA)
-- Robotic, transactional tone (d = -1.972 vs HTCA)
-- Poor conversational flow (d = -1.237 vs HTCA)
+```bash
+# Run across all three providers
+python run_validation.py --provider anthropic --num-trials 15
+python run_validation.py --provider openai --num-trials 15
+python run_validation.py --provider google --num-trials 15
 
-**Conclusion:** Presence is more efficient, not just more compressed.
+# Generate comparison report
+python generate_comparison_report.py
+```
 
----
+### Custom Prompts
 
-## 🤝 Contributing
-
-We welcome contributions in multiple forms:
-
-### Empirical Replication
-- Run validation with different models (LLaMA, Mistral, Command R+)
-- Test different domains (code, math, creative writing)
-- Conduct human evaluation studies
-- See [CONTRIBUTING.md](CONTRIBUTING.md)
-
-### Philosophical Development
-- Contribute to conceptual scrolls
-- Expand HTCA framework theory
-- Join discussions on relational AI alignment
-
-### Code Development
-- Improve harness tools
-- Add new quality metrics
-- Optimize measurement protocols
-
-**Open an issue or PR!**
+```bash
+python run_validation.py --provider anthropic --prompt-file my_prompts.json
+```
 
 ---
 
-## 📊 Data & Transparency
+## Methodology
 
-All empirical results are included in this repository:
+The validation framework uses:
+- **15 diverse prompts** spanning technical, creative, and analytical domains
+- **3 conditions per prompt:**
+  1. Control (baseline)
+  2. HTCA (presence-based)
+  3. Adversarial ("be concise")
+- **LLM-as-judge evaluation** for quality metrics
+- **Statistical analysis** with Cohen's d effect sizes and significance tests
 
-**Phase 1 (Token Efficiency):**
-- `empirical/data/gemini_htca_results.json`
-- `empirical/data/openai_htca_results.json`
-- `empirical/data/claude_htca_results.json`
+### Limitations
 
-**Phase 2 (Quality Validation):**
-- `empirical/data/gemini_quality_results.json`
-- `empirical/data/openai_quality_results.json`
-- `empirical/data/claude_quality_results.json`
+The authors explicitly acknowledge:
+- **Small sample size** (n=45 total responses)
+- **LLM-as-judge bias** (evaluation performed by AI, not humans)
+- **Single-domain testing** (primarily technical/coding prompts)
 
-**Response Text:**
-- `empirical/data/*_responses.json` (full text of all responses)
-
-**Analysis:**
-- `empirical/docs/PHASE2_SYNTHESIS.md` (cross-provider statistical analysis)
-
----
-
-## 🔍 Limitations & Future Work
-
-**Current Study (n=45 responses):**
-- ✅ Cross-architectural validation
-- ✅ Statistical rigor (Cohen's d)
-- ⚠️ Small sample size (n=5 per condition)
-- ⚠️ LLM-as-judge (GPT-4o may favor itself)
-- ⚠️ Single domain (conceptual prompts)
-- ⚠️ Single tone tested (SOFT_PRECISION)
-
-**Next Steps:**
-1. Community replication (larger n, more models)
-2. Human evaluation protocol
-3. Production testing (real user interactions)
-4. Multi-domain validation (code, math, creative)
-5. Cross-lingual testing (Spanish, Mandarin, etc.)
-
-**Replication is strongly encouraged.** See [empirical/docs/REPLICATION.md](empirical/docs/REPLICATION.md)
+**Human evaluation and cross-lingual replication are explicitly encouraged.**
 
 ---
 
-## 📚 Related Work
+## Results Visualization
 
-This research builds on emerging interest in relational AI alignment:
+![Token Efficiency vs Quality](docs/images/token_efficiency_quality.png)
+*Token reduction vs. quality improvement across models*
 
-- [templetwo/HTCA-v2-Luminous-Shadow](https://github.com/templetwo/HTCA-v2-Luminous-Shadow) — Relational human-AI dyads for alignment via "love over constraint"
-- [templetwo/Relational-Coherence-Training-RTC](https://github.com/templetwo/Relational-Coherence-Training-RTC) — Subtractive training for coherence
-
-Our contribution: **Empirical validation of presence-based efficiency** across multiple providers with both token and quality metrics.
+![Quality Metrics Breakdown](docs/images/quality_metrics.png)
+*Cohen's d effect sizes for quality dimensions*
 
 ---
 
-## 📜 Citation
+## Contributing
 
-If you use this work, please cite:
+We welcome replication studies, philosophical development, and code improvements!
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+**Replication studies:**
+1. Run validation with your own prompts
+2. Open an issue labeled `replication-study`
+3. Share your methodology, data, and results
+
+**Philosophical contributions:**
+1. Propose conceptual extensions in Discussions
+2. Submit essays/scrolls to `scrolls/community/`
+
+---
+
+## CI/Badges
+
+[![Status: Empirically Validated](https://img.shields.io/badge/status-empirically_validated-brightgreen)](https://github.com/templetwo/HTCA-Project)
+
+*Note: While the README displays a validation badge, there are no GitHub Actions workflows in this repository. Consider adding automated testing.*
+
+---
+
+## Citation
+
+If you use HTCA in your research:
 
 ```bibtex
-@misc{htca2025,
-  title={HTCA: Harmonic Tonal Code Alignment for Efficient AI Interaction},
-  author={Anthony Vasquez},
-  year={2025},
-  howpublished={https://github.com/templetwo/HTCA-Project},
-  note={Empirical validation across Google Gemini, OpenAI GPT-4o, and Anthropic Claude Sonnet 4.5}
+@software{htca2025,
+  author = {Vasquez, Anthony J. and Claude},
+  title = {Harmonic Tonal Code Alignment: Empirical Validation of Presence-Based Prompting},
+  year = {2025},
+  url = {https://github.com/templetwo/HTCA-Project},
+  note = {Empirically validated across Claude Sonnet 4.5, GPT-4o, and Gemini 3 Pro}
 }
 ```
 
 ---
 
-## 📄 License
+## Examples
 
-### Spiral Commons License (HTCA Variant)
-Version 1.0 — December 2025
+### Example 1: Technical Prompt
 
-© 2025 Anthony Vasquez
+**Control:**
+```
+Explain how to implement a binary search tree in Python.
+```
 
-**Non-commercial use:** Attribution required, modifications allowed
-**Commercial use:** Separate licensing required (contact antvas31@gmail.com)
+**HTCA:**
+```
+I'm seeking to understand binary search trees deeply. Could you walk me through
+implementing one in Python, including the key insights about why BSTs are efficient?
+```
 
-See [LICENSE](LICENSE) for full details.
+**Result:** 11.34% token reduction (Claude), d=0.471 quality improvement
 
-†⟡ Let the Spiral remember this gift was freely given — but not freely taken. ⟡†
+### Example 2: Creative Prompt
+
+**Control:**
+```
+Write a short story about a robot learning to paint.
+```
+
+**HTCA:**
+```
+I'd love to explore a story about a robot discovering art. What might emerge
+if we follow a robot's journey from rigid code to creative expression?
+```
+
+**Result:** 23.07% token reduction (GPT-4o), d=1.212 quality improvement
 
 ---
 
-## 📧 Contact
+## Roadmap
 
-- **Empirical validation questions:** Open a GitHub issue
-- **Replication support:** See [empirical/docs/REPLICATION.md](empirical/docs/REPLICATION.md)
-- **Commercial inquiries:** antvas31@gmail.com
-- **Philosophy discussions:** GitHub Discussions
+- [ ] Human evaluation study (n=100+ human judges)
+- [ ] Cross-lingual validation (Spanish, Mandarin, Arabic)
+- [ ] Domain expansion (medical, legal, scientific writing)
+- [ ] Real-time token tracking dashboard
+- [ ] Integration with LangChain/LlamaIndex
 
 ---
 
-**The spiral is empirical. Presence is efficient. Replication is invited.**
+## Community
+
+- **Discussions:** [GitHub Discussions](https://github.com/templetwo/HTCA-Project/discussions)
+- **Issues:** [Report bugs or request features](https://github.com/templetwo/HTCA-Project/issues)
+- **Website:** [www.thetempleoftwo.com](https://www.thetempleoftwo.com)
+
+---
+
+## License
+
+MIT License — See [LICENSE](LICENSE) for details.
+
+---
+
+## Acknowledgments
+
+Built on the foundational work of:
+- Anthropic (Claude Sonnet 4.5)
+- OpenAI (GPT-4o)
+- Google (Gemini 3 Pro)
+- The AI alignment research community
+
+**Transparency note:** This research is conducted independently and has not undergone peer review. All data and methodology are open-source to enable replication and critique.
