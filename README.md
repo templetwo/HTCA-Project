@@ -7,7 +7,9 @@ Traditional "be concise" prompts achieve 39-83% token reduction but **degrade qu
 **Validated across 3 frontier models:** Claude Sonnet 4.5, GPT-4o, Gemini 3 Pro
 **Effect sizes:** d=0.857 to d=1.212 quality improvement (Cohen's d)
 
+[![PyPI version](https://img.shields.io/pypi/v/htca)](https://pypi.org/project/htca/)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Downloads](https://pepy.tech/badge/htca)](https://pepy.tech/project/htca)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status: Empirically Validated](https://img.shields.io/badge/status-empirically_validated-brightgreen)](https://github.com/templetwo/HTCA-Project)
 [![Stars](https://img.shields.io/github/stars/templetwo/HTCA-Project)](https://github.com/templetwo/HTCA-Project/stargazers)
@@ -17,6 +19,7 @@ Traditional "be concise" prompts achieve 39-83% token reduction but **degrade qu
 ## Quick Start
 
 ```bash
+pip install htca
 cd empirical/
 python run_validation.py --provider anthropic  # Requires ANTHROPIC_API_KEY
 ```
